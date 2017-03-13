@@ -1,4 +1,4 @@
-package com.aware.plugin.HYKS;
+package com.aware.plugin.hyks;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,10 @@ import com.aware.Applications;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.ui.PermissionsHandler;
+import com.aware.utils.Aware_TTS;
+import com.aware.utils.Scheduler;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -27,7 +30,7 @@ import java.util.ArrayList;
 public class HYKS extends AppCompatActivity {
 
     private TextView device_id;
-    private Button join_study, set_settings, sync_data;
+    private Button join_study, set_settings, sync_data, set_schedule;
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
 
@@ -37,7 +40,6 @@ public class HYKS extends AppCompatActivity {
 
         setContentView(R.layout.main_ui);
 
-        REQUIRED_PERMISSIONS.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
@@ -98,6 +100,35 @@ public class HYKS extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Syncing data...", Toast.LENGTH_SHORT).show();
                 }
             });
+
+            set_schedule = (Button) findViewById(R.id.set_schedule);
+            set_schedule.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setSchedule();
+                    Toast.makeText(getApplicationContext(), "Starting schedule", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void setSchedule() {
+        try{
+            Scheduler.Schedule schedule_day = new Scheduler.Schedule("schedule_day");
+            schedule_day
+                    .addHour(8)
+                    .addHour(10)
+                    .addHour(12)
+                    .addHour(14)
+                    .addHour(16)
+                    .addHour(18)
+                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                    .setActionIntentAction("ESM_TRIGGERED");
+
+            Scheduler.saveSchedule(this, schedule_day);
+            Aware.startScheduler(this);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

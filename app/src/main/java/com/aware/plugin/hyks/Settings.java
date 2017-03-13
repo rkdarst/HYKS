@@ -1,9 +1,8 @@
-package com.aware.plugin.HYKS;
+package com.aware.plugin.hyks;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -17,6 +16,18 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
 
     //Plugin settings UI elements
     private static CheckBoxPreference status;
+
+
+    /**
+     * State of Google's Activity Recognition plugin
+     */
+    public static final String STATUS_PLUGIN_GOOGLE_ACTIVITY_RECOGNITION = "status_plugin_google_activity_recognition";
+
+    /**
+     * Frequency of Google's Activity Recognition plugin in seconds<br/>
+     * By default = 60 seconds
+     */
+    public static final String FREQUENCY_PLUGIN_GOOGLE_ACTIVITY_RECOGNITION = "frequency_plugin_google_activity_recognition";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
