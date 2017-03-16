@@ -88,6 +88,9 @@ public class HYKS extends AppCompatActivity {
 
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_ESM, true);
 
+                    // Clear (local) data after it has been synced.
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_CLEAN_OLD_DATA, 4);
+
                     // TODO: configure ambient noise
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.STATUS_PLUGIN_AMBIENT_NOISE, true);
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.FREQUENCY_PLUGIN_AMBIENT_NOISE, 30); // in minutes
@@ -96,11 +99,7 @@ public class HYKS extends AppCompatActivity {
 
                     Aware.startPlugin(getApplicationContext(), "com.aware.plugin.hyks");
 
-                    Applications.isAccessibilityServiceActive(getApplicationContext());
-
                     Toast.makeText(getApplicationContext(), "Thanks for joining!", Toast.LENGTH_SHORT).show();
-
-                    finish();
                 }
             });
 
@@ -136,11 +135,11 @@ public class HYKS extends AppCompatActivity {
                     .addHour(14)
                     .addHour(16)
                     .addHour(18)
+                    .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_TRIGGERED");
 
             Scheduler.saveSchedule(this, schedule_day);
-            Aware.startScheduler(this);
         } catch (JSONException e) {
             e.printStackTrace();
         }
