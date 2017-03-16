@@ -3,9 +3,11 @@ package com.aware.plugin.hyks;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.util.Log;
 
 import com.aware.ESM;
+import com.aware.providers.ESM_Provider;
 import com.aware.ui.esms.ESMFactory;
 import com.aware.ui.esms.ESM_Freetext;
 import com.aware.ui.esms.ESM_Likert;
@@ -25,7 +27,39 @@ public class ESM_Questionnaire extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        if(!intent.getAction().equals("ESM_TRIGGERED")) {
+            return;
+        }
+
         Log.d("Niels", "Trigger received");
+
+        morningAnsweredToday = false;
+
+        // Check if morning questionnaire has been answered
+        try {
+            Calendar today = Calendar.getInstance();
+            today.set(Calendar.HOUR_OF_DAY,0);
+            today.set(Calendar.MINUTE,0);
+            today.set(Calendar.SECOND,0);
+
+            Cursor esm_data = context.getContentResolver().query(ESM_Provider.ESM_Data.CONTENT_URI, null,
+                    ESM_Provider.ESM_Data.TIMESTAMP + ">=" + today.getTimeInMillis() +
+                            " AND " + ESM_Provider.ESM_Data.TRIGGER + " LIKE 'Morning'" +
+                            " AND " + ESM_Provider.ESM_Data.STATUS + "=" + ESM.STATUS_ANSWERED, null, null);
+            if (esm_data != null) {
+                if (esm_data.getCount() > 1) {
+                    // Morning has been answered today
+                    morningAnsweredToday = true;
+                }
+            }
+            else Log.d("Niels", "cursor is null");
+            if(esm_data != null && !esm_data.isClosed()) {
+                esm_data.close();
+            }
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         // Time to launch an ESM
         Calendar calendar = Calendar.getInstance();
@@ -35,13 +69,10 @@ public class ESM_Questionnaire extends BroadcastReceiver {
             buildESM(true, context);
         }
         else {
-            buildESM(false, context);
             // Include only the regular questionnaire
-
+            buildESM(false, context);
         }
     }
-
-    // Set morning answered today to true if the question was answered.
 
     private void buildESM(boolean morning, Context context) {
         try {
@@ -50,7 +81,7 @@ public class ESM_Questionnaire extends BroadcastReceiver {
             if(morning) {
                 ESM_Freetext esmFreetext = new ESM_Freetext();
                 esmFreetext.setTitle("Freetext")
-                        .setTrigger("How did you sleep?")
+                        .setTrigger("Morning")
                         .setSubmitButton("OK")
                         .setInstructions("Morning-only question");
 
@@ -61,6 +92,7 @@ public class ESM_Questionnaire extends BroadcastReceiver {
             ESM_Radio esmRadio = new ESM_Radio();
             esmRadio.addRadio("Option 1")
                     .addRadio("Option 2")
+                    .setInstructions("")
                     .setTitle("Radio question")
                     .setSubmitButton("OK");
             factory.addESM(esmRadio);
@@ -70,12 +102,16 @@ public class ESM_Questionnaire extends BroadcastReceiver {
                     .setLikertMaxLabel("Great")
                     .setLikertMinLabel("Poor")
                     .setLikertStep(1)
+                    .setInstructions("")
                     .setTitle("Likert question")
                     .setSubmitButton("OK");
             factory.addESM(esmLikert);
 
             //Queue them
-            ESM.queueESM(context, factory.build());
+            //ESM.queueESM(context, factory.build());
+            Intent queueESM = new Intent(ESM.ACTION_AWARE_QUEUE_ESM);
+            queueESM.putExtra(ESM.EXTRA_ESM, factory.build());
+            context.sendBroadcast(queueESM);
 
         } catch (JSONException e) {
             e.printStackTrace();

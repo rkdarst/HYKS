@@ -46,8 +46,6 @@ public class Plugin extends Aware_Plugin {
         DATABASE_TABLES = Provider.DATABASE_TABLES;
         TABLES_FIELDS = Provider.TABLES_FIELDS;
         CONTEXT_URIS = new Uri[]{Provider.HYKS_data.CONTENT_URI};
-
-        Aware.startPlugin(this, "com.aware.plugin.hyks");
     }
 
     //This function gets called every 5 minutes by AWARE to make sure this plugin is still running.
@@ -59,15 +57,10 @@ public class Plugin extends Aware_Plugin {
             //Check if the user has toggled the debug messages
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
 
-            // TODO: configure ambient noise
-            Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.STATUS_PLUGIN_AMBIENT_NOISE, true);
-            Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.FREQUENCY_PLUGIN_AMBIENT_NOISE, 30); // in minutes
-            Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.PLUGIN_AMBIENT_NOISE_SAMPLE_SIZE, 20); // in seconds
-            Aware.startPlugin(getApplicationContext(), "com.aware.plugin.ambient_noise");
-
             //Initialize our plugin's settings
             Aware.setSetting(this, Settings.STATUS_PLUGIN_HYKS, true);
 
+            Aware.startPlugin(this, "com.aware.plugin.hyks");
             Aware.startAWARE(this);
         }
         return START_STICKY;

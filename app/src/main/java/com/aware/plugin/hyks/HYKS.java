@@ -40,6 +40,8 @@ public class HYKS extends AppCompatActivity {
 
         setContentView(R.layout.main_ui);
 
+        Intent aware = new Intent(this, Aware.class);
+        startService(aware);
 
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
@@ -83,6 +85,18 @@ public class HYKS extends AppCompatActivity {
                     EditText edittext_study_url = (EditText) findViewById(R.id.edittext_study_url);
                     String url = String.valueOf(edittext_study_url.getText());
                     Aware.joinStudy(getApplicationContext(), url);
+
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_ESM, true);
+
+                    // TODO: configure ambient noise
+                    Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.STATUS_PLUGIN_AMBIENT_NOISE, true);
+                    Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.FREQUENCY_PLUGIN_AMBIENT_NOISE, 30); // in minutes
+                    Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.PLUGIN_AMBIENT_NOISE_SAMPLE_SIZE, 20); // in seconds
+                    Aware.startPlugin(getApplicationContext(), "com.aware.plugin.ambient_noise");
+
+                    Aware.startPlugin(getApplicationContext(), "com.aware.plugin.hyks");
+
+                    Applications.isAccessibilityServiceActive(getApplicationContext());
 
                     Toast.makeText(getApplicationContext(), "Thanks for joining!", Toast.LENGTH_SHORT).show();
 
