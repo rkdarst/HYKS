@@ -54,8 +54,8 @@ public class Provider extends ContentProvider {
         public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd.com.aware.plugin.hyks.provider.questionnaire"; //modify me
         public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd.com.aware.plugin.hyks.provider.questionnaire"; //modify me
 
-        // TODO
-        public static final String COLUMN = "column";
+        public static final String START_TIME = "start_time";
+        public static final String ANSWER = "answer";
     }
 
     //Define each database table fields
@@ -63,7 +63,8 @@ public class Provider extends ContentProvider {
             HYKS_data._ID + " integer primary key autoincrement," +
                     HYKS_data.TIMESTAMP + " real default 0," +
                     HYKS_data.DEVICE_ID + " text default ''," +
-                    HYKS_data.COLUMN + " text default ''";
+                    HYKS_data.START_TIME + " real default 0," +
+                    HYKS_data.ANSWER + " text default ''";
     /**
      * Share the fields with AWARE so we can replicate the table schema on the server
      */
@@ -110,7 +111,8 @@ public class Provider extends ContentProvider {
         tableOneHash.put(HYKS_data._ID, HYKS_data._ID);
         tableOneHash.put(HYKS_data.TIMESTAMP, HYKS_data.TIMESTAMP);
         tableOneHash.put(HYKS_data.DEVICE_ID, HYKS_data.DEVICE_ID);
-        tableOneHash.put(HYKS_data.COLUMN, HYKS_data.COLUMN);
+        tableOneHash.put(HYKS_data.START_TIME, HYKS_data.START_TIME);
+        tableOneHash.put(HYKS_data.ANSWER, HYKS_data.ANSWER);
 
         return true;
     }

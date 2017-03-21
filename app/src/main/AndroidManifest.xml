@@ -21,39 +21,62 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-
         <service
-            android:name="com.aware.plugin.hyks.Plugin"
+            android:name=".Plugin"
             android:exported="true" />
 
-        <receiver android:name="com.aware.plugin.hyks.ESM_Questionnaire"
+        <receiver
+            android:name=".ESM_Morning_Questionnaire"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="ESM_TRIGGERED" />
+                <action android:name="ESM_MORNING_TRIGGERED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".ESM_Evening_Questionnaire"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ESM_EVENING_TRIGGERED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".ESM_PHQ"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ESM_PHQ_TRIGGERED" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name="com.aware.plugin.hyks.Settings"
+            android:name=".Settings"
             android:exported="true" />
 
         <provider
-            android:name="com.aware.plugin.hyks.Provider"
+            android:name=".Provider"
             android:authorities="${applicationId}.provider.hyks"
             android:exported="true"
             android:readPermission="com.aware.READ_CONTEXT_DATA"
             android:writePermission="com.aware.WRITE_CONTEXT_DATA" />
 
         <activity
-            android:name="com.aware.plugin.hyks.HYKS"
+            android:name=".HYKS"
             android:label="@string/title_activity_hyks"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".phq9"
+            android:label="@string/title_activity_phq9"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 </manifest>

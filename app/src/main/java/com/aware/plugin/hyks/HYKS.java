@@ -126,20 +126,49 @@ public class HYKS extends AppCompatActivity {
     }
 
     private void setSchedule() {
+
+        // Morning schedule
         try{
-            Scheduler.Schedule schedule_day = new Scheduler.Schedule("schedule_day");
-            schedule_day
+            Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
+            schedule_morning
                     .addHour(8)
                     .addHour(10)
-                    .addHour(12)
-                    .addHour(14)
-                    .addHour(16)
-                    .addHour(18)
                     .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_TRIGGERED");
+                    .setActionIntentAction("ESM_MORNING_TRIGGERED");
 
-            Scheduler.saveSchedule(this, schedule_day);
+            Scheduler.saveSchedule(this, schedule_morning);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Evening schedule
+        try{
+            Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
+            schedule_evening
+                    .addHour(20)
+                    .addHour(22)
+                    .setInterval(60)
+                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                    .setActionIntentAction("ESM_EVENING_TRIGGERED");
+
+            Scheduler.saveSchedule(this, schedule_evening);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Random schedule
+        // TODO
+
+        // PHQ9 schedule
+        try{
+            Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
+            schedule_biweekly
+                    .setInterval(20160)
+                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                    .setActionIntentAction("ESM_PHQ_TRIGGERED");
+
+            Scheduler.saveSchedule(this, schedule_biweekly);
         } catch (JSONException e) {
             e.printStackTrace();
         }

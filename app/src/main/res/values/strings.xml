@@ -1,4 +1,35 @@
 <resources>
     <string name="app_name">HYKS</string>
     <string name="title_activity_hyks">HYKS</string>
+
+
+    <string name="morning_1">Kuinka kauan kesti ennen kuin nukahdit?</string>
+    <string name="morning_2">Kuinka monta kertaa heräsit yön aikana?</string>
+    <string name="morning_3">Kuinka kauan olit hereillä ennen kuin nousit ylös aamulla?</string>
+    <string name="morning_4">Nukuitko hyvin?</string>
+    <string name="morning_5">Mihin aikaan nukahdit?</string>
+    <string name="morning_6">Mihin aikaan heräsit?</string>
+
+    <string name="evening_1">Tämä oli tavanomainen päivä.</string>
+    <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
+    <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
+
+    <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>
+    <string name="phq9_1">Asioiden tekeminen kiinnostaa hyvin vähän tai ei juuri tuota mielihyvää</string>
+    <string name="phq9_2">Alakuloisuus, masentuneisuus tai toivottomuus</string>
+    <string name="phq9_3">Nukahtamis- tai nukkumisvaikeudet tai liiallinen nukkuminen</string>
+    <string name="phq9_4">Väsymys tai energian puute</string>
+    <string name="phq9_5">Huono ruokahalu tai ylensyöminen</string>
+    <string name="phq9_6">Tyytymättömyys omaan itseen – tai tunne, että olette epäonnistuneet tai laiminlyöneet itsenne tai perheenne</string>
+    <string name="phq9_7">Vaikeus keskittyä asioihin, kuten lehden lukemiseen tai television katseluun</string>
+    <string name="phq9_8">Liikutteko tai puhutteko niin hitaasti, että muut ihmiset ovat saattaneet huomata? Tai päinvastoin - oletteko olleet niin hermostunut tai levoton, että olette liikkuneet paljon tavallista enemmän</string>
+    <string name="phq9_9">Ajatukset, että voisi olla yhtä hyvin kuollut tai, että voisi vahingoittaa itseään jollakin tavalla</string>
+    <string name="phq9_extra">Jos teillä on ollut jokin ongelma, niin kuinka vaikeaa teidän on ollut huolehtia työstänne, kotiasioistanne tai tulla toimeen muiden ihmisten kanssa näiden ongelmien vuoksi?</string>
+    <string name="phq9_answer_1">Ei lainkaan</string>
+    <string name="phq9_answer_2">Useina päivinä</string>
+    <string name="phq9_answer_3">Useammin kuin puolet ajasta</string>
+    <string name="phq9_answer_4">Lähes joka päivä</string>
+
+    <string name="submit">Lähetä</string>
+    <string name="title_activity_phq9">phq9</string>
 </resources>
