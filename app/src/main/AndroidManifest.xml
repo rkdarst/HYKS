@@ -44,6 +44,15 @@
         </receiver>
 
         <receiver
+            android:name=".ESM_Random_Questionnaire"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ESM_RANDOM_TRIGGERED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
             android:name=".ESM_PHQ"
             android:enabled="true"
             android:exported="true">
@@ -73,9 +82,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".phq9"
             android:label="@string/title_activity_phq9"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".olo"
+            android:label="@string/title_activity_olo"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

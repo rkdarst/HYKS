@@ -5,24 +5,30 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+
+import com.aware.ESM;
+import com.aware.ui.esms.ESMFactory;
+import com.aware.ui.esms.ESM_Radio;
+
+import org.json.JSONException;
 
 /**
- * Created by niels on 21/03/2017.
+ * Created by niels on 03/04/2017.
  */
 
-public class ESM_PHQ extends BroadcastReceiver {
+public class ESM_Random_Questionnaire extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(!intent.getAction().equals("ESM_PHQ_TRIGGERED")) {
+        if(!intent.getAction().equals("ESM_RANDOM_TRIGGERED")) {
             return;
         }
 
-        Intent resultIntent = new Intent(context, phq9.class);
+        Intent resultIntent = new Intent(context, olo.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, resultIntent, 0);
 
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -32,7 +38,8 @@ public class ESM_PHQ extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSound(soundUri)
                 .setAutoCancel(true)
-                .setContentTitle("Kyselylomake odottaa vastaustasi")
+                // TODO: remove OLO from title - debug only
+                .setContentTitle("OLO - Kyselylomake odottaa vastaustasi")
                 .setContentText("Avaa lomake vastataksesi kyselyyn");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

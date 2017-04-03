@@ -14,6 +14,25 @@
     <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
     <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
 
+    <string name="olo_instructions">OLO instructions</string>
+    <string name="olo_1">Juuri nyt tunnen itseni.</string>
+    <string name="olo_1_1">iloiseksi</string>
+    <string name="olo_1_2">väsyneeksi</string>
+    <string name="olo_1_3">tyytyväiseksi</string>
+    <string name="olo_1_4">hermostuneeksi</string>
+    <string name="olo_1_5">rauhalliseksi</string>
+    <string name="olo_1_6">surulliseksi</string>
+    <string name="olo_1_7">innostuneeksi</string>
+    <string name="olo_1_8">aktiiviseksi</string>
+
+    <string name="olo_2">Mieti, mitä olit tekemässä juuri ennen piippausta</string>
+    <string name="olo_2_1">Nautin tästä tekemisestä</string>
+    <string name="olo_2_2">Pystyn tekemään tämän hyvin</string>
+    <string name="olo_2_3">Tämä vaatii ponnistelua</string>
+    <string name="olo_2_4">Mitä olit tekemässä juuri ennen piippausta</string>
+
+
+
     <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>
     <string name="phq9_1">Asioiden tekeminen kiinnostaa hyvin vähän tai ei juuri tuota mielihyvää</string>
     <string name="phq9_2">Alakuloisuus, masentuneisuus tai toivottomuus</string>
@@ -31,5 +50,7 @@
     <string name="phq9_answer_4">Lähes joka päivä</string>
 
     <string name="submit">Lähetä</string>
-    <string name="title_activity_phq9">phq9</string>
+
+    <string name="title_activity_phq9">HYKS</string>
+    <string name="title_activity_olo">HYKS</string>
 </resources>

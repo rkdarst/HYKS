@@ -34,6 +34,10 @@ public class HYKS extends AppCompatActivity {
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
 
+    // TODO: make these hours configurable
+    private int startHour = 8;
+    private int endHour = 22;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,8 +135,8 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
             schedule_morning
-                    .addHour(8)
-                    .addHour(10)
+                    .addHour(startHour)
+                    .addHour(startHour + 2)
                     .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_MORNING_TRIGGERED");
@@ -146,9 +150,9 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
             schedule_evening
-                    .addHour(20)
-                    .addHour(22)
-                    .setInterval(60)
+                    .addHour(endHour)
+//                    .addHour(endHour + 2)
+//                    .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_EVENING_TRIGGERED");
 
@@ -158,7 +162,19 @@ public class HYKS extends AppCompatActivity {
         }
 
         // Random schedule
-        // TODO
+        try{
+            Scheduler.Schedule schedule_random = new Scheduler.Schedule("schedule_random");
+            schedule_random
+                    .random(3, 30)
+                    .addHour(startHour + 2)
+                    .addHour(endHour - 2)
+                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                    .setActionIntentAction("ESM_RANDOM_TRIGGERED");
+
+            Scheduler.saveSchedule(this, schedule_random);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         // PHQ9 schedule
         try{
