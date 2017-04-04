@@ -30,8 +30,53 @@
     <string name="olo_2_2">Pystyn tekemään tämän hyvin</string>
     <string name="olo_2_3">Tämä vaatii ponnistelua</string>
     <string name="olo_2_4">Mitä olit tekemässä juuri ennen piippausta</string>
+    <string name="olo_2_4_1">työ/opiskelu</string>
+    <string name="olo_2_4_2">fyysinen aktiviteetti</string>
+    <string name="olo_2_4_3">media/lukeminen</string>
+    <string name="olo_2_4_4">passiivinen oleskelu</string>
+    <string name="olo_2_4_5">arkiaskareet</string>
+    <string name="olo_2_4_6">vuorovaikutus</string>
+    <string name="olo_2_4_7">syöminen</string>
+    <string name="olo_2_4_8">muu</string>
 
-
+    <string name="olo_3">Mieti tärkeintä tapahtumaa edellisen piippauksen jälkeen</string>
+    <string name="olo_3_1">Kuinka miellyttävä tapahtuma oli</string>
+    <string name="olo_3_2">Mihin tärkein tapahtuma liittyi</string>
+    <string name="olo_3_2_1">työ/opiskelu</string>
+    <string name="olo_3_2_2">fyysinen aktiviteetti</string>
+    <string name="olo_3_2_3">media/lukeminen</string>
+    <string name="olo_3_2_4">passiivinen oleskelu</string>
+    <string name="olo_3_2_5">arkiaskareet</string>
+    <string name="olo_3_2_6">vuorovaikutus</string>
+    <string name="olo_3_2_7">syöminen</string>
+    <string name="olo_3_2_8">muu</string>
+    <string name="olo_3_3">Juuri nyt olen yksin</string>
+    
+    <string name="olo_3_3_1_1">Mieti, kenen kanssa olet juuri nyt</string>
+    <string name="olo_3_3_1_2">Koen nämä ihmiset miellyttävinä</string>
+    <string name="olo_3_3_1_3">Olen vuorovaikutuksessa näiden ihmisten kanssa</string>
+    <string name="olo_3_3_1_4">Olisin mieluummin yksin</string>
+    <string name="olo_3_3_1_5">Kenen kanssa olet juuri nyt?</string>
+    <string name="olo_3_3_1_5_1">puoliso/kumppani</string>
+    <string name="olo_3_3_1_5_2">muu perheenjäsen</string>
+    <string name="olo_3_3_1_5_3">ystävä</string>
+    <string name="olo_3_3_1_5_4">työ-/opiskelukaveri</string>
+    <string name="olo_3_3_1_5_5">tuntematon</string>
+    <string name="olo_3_3_1_5_6">muu</string>
+    
+    <string name="olo_3_3_2_1">Olen yksin, koska haluan olla yksin</string>
+    
+    <string name="olo_4">Edellisen piippauksen jälkeen...</string>
+    <string name="olo_4_1">Montako annosta kahvia tai muuta kofeiinipitoista juomaa olet juonut</string>
+    <string name="olo_4_2">Montako savuketta olet polttanut</string>
+    <string name="olo_4_3">Montako ravintola-annosta alkoholia olet juonut</string>
+    <string name="olo_4_4">Oleko syönyt aterian</string>
+    <string name="olo_4_5">Oletko syönyt välipalan</string>
+    <string name="olo_4_6">Oletko harrastanut hyötyliikuntaa vähintään 10 min</string>
+    <string name="olo_4_7">Oletko harrastanut kuntoliikuntaa vähintään 30min</string>
+    <string name="olo_4_7_1">Kuinka raskasta kuntoliikuntaa harrastit</string>
+    <string name="olo_4_7_2">Tämä piippaus häiritsi minua</string>
+    
 
     <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>
     <string name="phq9_1">Asioiden tekeminen kiinnostaa hyvin vähän tai ei juuri tuota mielihyvää</string>
