@@ -37,8 +37,9 @@
 
                 <RatingBar
                     android:id="@+id/rb_olo_2_1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:numStars="6"
                     android:stepSize="1" />
             </LinearLayout>
@@ -58,8 +59,9 @@
 
                 <RatingBar
                     android:id="@+id/rb_olo_2_2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:numStars="6"
                     android:stepSize="1" />
             </LinearLayout>
@@ -79,8 +81,9 @@
 
                 <RatingBar
                     android:id="@+id/rb_olo_2_3"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:numStars="6"
                     android:stepSize="1" />
             </LinearLayout>
@@ -174,7 +177,7 @@
             android:paddingRight="10dp">
 
             <Button
-                android:id="@+id/olo_next"
+                android:id="@+id/v2_next"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
