@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:padding="10dp"
-            android:text="@string/olo_instructions"
+            android:text="@string/olo_2"
             android:textAppearance="@android:style/TextAppearance.Large" />
 
         <LinearLayout
@@ -32,70 +32,133 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:padding="10dp"
-                    android:text="@string/olo_1"
+                    android:text="@string/olo_2_1"
+                    android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                <RatingBar
+                    android:id="@+id/rb_olo_2_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numStars="6"
+                    android:stepSize="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:text="@string/olo_2_2"
+                    android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                <RatingBar
+                    android:id="@+id/rb_olo_2_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numStars="6"
+                    android:stepSize="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:text="@string/olo_2_3"
+                    android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                <RatingBar
+                    android:id="@+id/rb_olo_2_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numStars="6"
+                    android:stepSize="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:text="@string/olo_2_4"
                     android:textAppearance="@android:style/TextAppearance.Medium" />
 
                 <RadioGroup
-                    android:id="@+id/olo1_radio_group"
+                    android:id="@+id/olo2_4_radio_group"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_horizontal">
 
                     <RadioButton
-                        android:id="@+id/olo_1_1"
+                        android:id="@+id/olo_2_4_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_1" />
+                        android:text="@string/olo_2_4_1" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_2"
+                        android:id="@+id/olo_2_4_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_2" />
+                        android:text="@string/olo_2_4_2" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_3"
+                        android:id="@+id/olo_2_4_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_3" />
+                        android:text="@string/olo_2_4_3" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_4"
+                        android:id="@+id/olo_2_4_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_4" />
+                        android:text="@string/olo_2_4_4" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_5"
+                        android:id="@+id/olo_2_4_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_5" />
+                        android:text="@string/olo_2_4_5" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_6"
+                        android:id="@+id/olo_2_4_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_6" />
+                        android:text="@string/olo_2_4_6" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_7"
+                        android:id="@+id/olo_2_4_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/olo_1_7" />
 
                     <RadioButton
-                        android:id="@+id/olo_1_8"
+                        android:id="@+id/olo_2_4_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_8" />
+                        android:text="@string/olo_2_4_8" />
 
                 </RadioGroup>
             </LinearLayout>

@@ -51,6 +51,8 @@
     <string name="olo_3_2_7">syöminen</string>
     <string name="olo_3_2_8">muu</string>
     <string name="olo_3_3">Juuri nyt olen yksin</string>
+    <string name="olo_3_3_1">Kyllä</string>
+    <string name="olo_3_3_2">Ei</string>
     
     <string name="olo_3_3_1_1">Mieti, kenen kanssa olet juuri nyt</string>
     <string name="olo_3_3_1_2">Koen nämä ihmiset miellyttävinä</string>
