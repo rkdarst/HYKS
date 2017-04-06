@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -86,6 +87,34 @@ public class olo extends Activity {
         Log.d("Niels", "Preparing olo 3!");
         setContentView(R.layout.olo_3);
 
+        RadioGroup olo3_3_radio_group = (RadioGroup) findViewById(R.id.olo3_3_radio_group);
+        final LinearLayout ll_olo_3_a = (LinearLayout) findViewById(R.id.ll_olo_3_a);
+        final LinearLayout ll_olo_3_b = (LinearLayout) findViewById(R.id.ll_olo_3_b);
+
+        olo3_3_radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = (RadioButton)findViewById(checkedId);
+                Log.d("Niels", "Radio button selected:" + String.valueOf(radioButton.getText()));
+
+                String radioSelected = String.valueOf(radioButton.getText());
+
+                if (radioSelected.equals("Kyllä")) {
+                    // Show Olo_3_3_2_1
+                    ll_olo_3_a.setVisibility(View.GONE);
+                    ll_olo_3_b.setVisibility(View.VISIBLE);
+                } else if (radioSelected.equals("Ei")) {
+                    // Show Olo_3_3_1_1 - Olo_3_3_1_5
+                    ll_olo_3_a.setVisibility(View.VISIBLE);
+                    ll_olo_3_b.setVisibility(View.GONE);
+                }
+                else {
+                    ll_olo_3_a.setVisibility(View.GONE);
+                    ll_olo_3_b.setVisibility(View.GONE);
+                }
+            }
+        });
+
         final Button v3_next = (Button) findViewById(R.id.v3_next);
         v3_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -108,6 +137,30 @@ public class olo extends Activity {
     private void prepare_olo_4() {
         Log.d("Niels", "Preparing olo 4!");
         setContentView(R.layout.olo_4);
+
+        RadioGroup olo4_7_radio_group = (RadioGroup) findViewById(R.id.olo4_7_radio_group);
+        final LinearLayout ll_olo_4_a = (LinearLayout) findViewById(R.id.ll_olo_4_a);
+
+        olo4_7_radio_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = (RadioButton)findViewById(checkedId);
+                Log.d("Niels", "Radio button selected:" + String.valueOf(radioButton.getText()));
+
+                String radioSelected = String.valueOf(radioButton.getText());
+
+                if (radioSelected.equals("Kyllä")) {
+                    // Show ll_olo_4_a
+                    ll_olo_4_a.setVisibility(View.VISIBLE);
+                } else if (radioSelected.equals("Ei")) {
+                    // Hide ll_olo_4_a
+                    ll_olo_4_a.setVisibility(View.GONE);
+                }
+                else {
+                    ll_olo_4_a.setVisibility(View.GONE);
+                }
+            }
+        });
 
         final Button v4_next = (Button) findViewById(R.id.v4_next);
         v4_next.setOnClickListener(new View.OnClickListener() {
