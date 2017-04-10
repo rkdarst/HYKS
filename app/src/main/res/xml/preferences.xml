@@ -9,4 +9,18 @@
         android:persistent="true"
         android:summary="Activate/deactivate plugin" />
 
+    <EditTextPreference
+        android:key="setting_start_hour"
+        android:defaultValue="8"
+        android:persistent="true"
+        android:summary="Usual wakeup hour"
+        android:inputType="numberDecimal"/>
+
+    <EditTextPreference
+        android:key="setting_end_hour"
+        android:defaultValue="22"
+        android:persistent="true"
+        android:summary="Usual bedtime hour"
+        android:inputType="numberDecimal"/>
+
 </PreferenceScreen>

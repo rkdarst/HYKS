@@ -3,9 +3,11 @@ package com.aware.plugin.hyks;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.widget.EditText;
 
 import com.aware.Aware;
 
@@ -13,9 +15,13 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
 
     //Plugin settings in XML @xml/preferences
     public static final String STATUS_PLUGIN_HYKS = "status_plugin_hyks";
+    public static final String START_HOUR = "setting_start_hour";
+    public static final String END_HOUR = "setting_end_hour";
 
     //Plugin settings UI elements
     private static CheckBoxPreference status;
+    private static EditTextPreference start_hour;
+    private static EditTextPreference end_hour;
 
 
     /**
@@ -46,6 +52,17 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
             Aware.setSetting(this, STATUS_PLUGIN_HYKS, true); //by default, the setting is true on install
         }
         status.setChecked(Aware.getSetting(getApplicationContext(), STATUS_PLUGIN_HYKS).equals("true"));
+
+        start_hour = (EditTextPreference) findPreference(START_HOUR);
+        if (Aware.getSetting(this, START_HOUR).length() == 0) {
+            Aware.setSetting(this, START_HOUR, 8);
+        }
+        start_hour.setSummary("Usual wakeup hour: " + Aware.getSetting(getApplicationContext(), START_HOUR));
+        end_hour = (EditTextPreference) findPreference(END_HOUR);
+        if (Aware.getSetting(this, END_HOUR).length() == 0) {
+            Aware.setSetting(this, END_HOUR, 22);
+        }
+        end_hour.setSummary("Usual bedtime hour: " + Aware.getSetting(getApplicationContext(), END_HOUR));
     }
 
     @Override
@@ -59,6 +76,14 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
             Aware.startPlugin(getApplicationContext(), "com.aware.plugin.hyks");
         } else {
             Aware.stopPlugin(getApplicationContext(), "com.aware.plugin.hyks");
+        }
+        if (setting.getKey().equals(START_HOUR)) {
+            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, "8"));
+            setting.setSummary("Usual wakeup hour: " + Aware.getSetting(getApplicationContext(), START_HOUR));
+        }
+        if (setting.getKey().equals(END_HOUR)) {
+            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, "22"));
+            setting.setSummary("Usual bedtime hour: " + Aware.getSetting(getApplicationContext(), END_HOUR));
         }
     }
 }

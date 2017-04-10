@@ -92,6 +92,12 @@ public class HYKS extends AppCompatActivity {
 
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_ESM, true);
 
+                    // Probes
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_BATTERY, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_COMMUNICATION_EVENTS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_SCREEN, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_APPLICATIONS, true);
+
                     // Clear (local) data after it has been synced.
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_CLEAN_OLD_DATA, 4);
 

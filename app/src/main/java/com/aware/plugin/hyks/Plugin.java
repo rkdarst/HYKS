@@ -57,7 +57,6 @@ public class Plugin extends Aware_Plugin {
             //Initialize our plugin's settings
             Aware.setSetting(this, Settings.STATUS_PLUGIN_HYKS, true);
 
-            Aware.startPlugin(this, "com.aware.plugin.hyks");
             Aware.startAWARE(this);
         }
         return START_STICKY;
