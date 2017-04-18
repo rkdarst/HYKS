@@ -141,8 +141,10 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
             schedule_morning
-                    .addHour(startHour)
-                    .addHour(startHour + 2)
+                    //.addHour(startHour)
+                    //.addHour(startHour + 2)
+                    .addHour(8)
+                    .addHour(10)
                     .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_MORNING_TRIGGERED");
@@ -156,8 +158,8 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
             schedule_evening
-                    .addHour(endHour)
-//                    .addHour(endHour + 2)
+                    .addHour(22)
+//                    .addHour(endHour)
 //                    .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_EVENING_TRIGGERED");
@@ -172,8 +174,10 @@ public class HYKS extends AppCompatActivity {
             Scheduler.Schedule schedule_random = new Scheduler.Schedule("schedule_random");
             schedule_random
                     .random(3, 30)
-                    .addHour(startHour + 2)
-                    .addHour(endHour - 2)
+//                    .addHour(startHour + 2)
+//                    .addHour(endHour - 2)
+                    .addHour(12)
+                    .addHour(20)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_RANDOM_TRIGGERED");
 
