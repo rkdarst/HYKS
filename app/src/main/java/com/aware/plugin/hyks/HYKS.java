@@ -103,6 +103,7 @@ public class HYKS extends AppCompatActivity {
 
                     // TODO: configure ambient noise
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.STATUS_PLUGIN_AMBIENT_NOISE, true);
+                    Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.PLUGIN_AMBIENT_NOISE_NO_RAW, true);
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.FREQUENCY_PLUGIN_AMBIENT_NOISE, 30); // in minutes
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.PLUGIN_AMBIENT_NOISE_SAMPLE_SIZE, 20); // in seconds
                     Aware.startPlugin(getApplicationContext(), "com.aware.plugin.ambient_noise");
