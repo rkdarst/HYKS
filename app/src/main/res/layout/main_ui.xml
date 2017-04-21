@@ -30,10 +30,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="https://api.awareframework.com/index.php/webservice/index/123/123456789"
+        android:text="NNNNNNNNNNNNNNNN"
         android:ems="10"
         android:id="@+id/edittext_study_url"
         android:inputType="textUri" />
+<!--        android:text="https://api.awareframework.com/index.php/webservice/index/123/123456789"-->
 
     <Button
         android:id="@+id/join_study"
