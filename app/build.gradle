@@ -50,8 +50,8 @@ configurations.all {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.github.denzilferreira:aware-client:$aware_libs"
-//    compile ("com.github.CxAalto:aware-client:nima5-SNAPSHOT")
+//    compile "com.github.denzilferreira:aware-client:$aware_libs"
+    compile ("com.github.CxAalto:aware-client:HYKS-live-SNAPSHOT")
 //            {
 //        exclude(group: "com.awareframework", module:"aware-core")
 //    }

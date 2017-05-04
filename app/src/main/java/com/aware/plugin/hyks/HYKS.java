@@ -88,6 +88,16 @@ public class HYKS extends AppCompatActivity {
 
                     EditText edittext_study_url = (EditText) findViewById(R.id.edittext_study_url);
                     String url = String.valueOf(edittext_study_url.getText());
+                    if (url.length() < 20) {
+                        if (!url.matches("[0-9a-f]{16}")) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    "Join must be either URL or 16-digit secret ID",
+                                    Toast.LENGTH_LONG);
+                            toast.show();
+                            return;
+                        }
+                        url = "https://aware.koota.zgib.net/index.php/aware/v1/" + url + "?crt_sha256=436669a4920ac08623357aaca77c935bbc3bf3906a9c962eb822edff021fcc42&crt_url=https%3A%2F%2Fdata.koota.cs.aalto.fi%2Fstatic%2Fserver-aware.crt";
+                    }
                     Aware.joinStudy(getApplicationContext(), url);
 
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_ESM, true);
