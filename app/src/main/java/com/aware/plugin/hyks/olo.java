@@ -137,18 +137,18 @@ public class olo extends Activity {
         v3_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int radio_button_1 = olo3_3_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
-                String radioSelected = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
 
                 int radio_button_olo3_2 = olo3_2_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
                 int radio_button_olo3_3 = olo3_3_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
 
-                float v3_1_answer = rb_olo_3_1.getRating();
-                String olo3_2_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_2)).getText());
-                String olo3_3_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_3)).getText());
+                if (radio_button_1 != -1 && radio_button_olo3_2 != -1 && radio_button_olo3_3 != -1) {
+                    int radio_button_olo3_1_5 = olo3_3_1_5_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
 
-                int radio_button_olo3_1_5 = olo3_3_1_5_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
+                    String radioSelected = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
+                    float v3_1_answer = rb_olo_3_1.getRating();
+                    String olo3_2_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_2)).getText());
+                    String olo3_3_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_3)).getText());
 
-                if (radio_button_1 != -1) {
                     answers.put("OLO3", v3_1_answer + ";" + olo3_2_radio_group_answer + ";" + olo3_3_radio_group_answer);
 
                     if (radioSelected.equals("Kyllä")) {
@@ -219,17 +219,19 @@ public class olo extends Activity {
                 int radio_button_olo4_6 = olo4_6_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
                 int radio_button_olo4_7 = olo4_7_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
 
-                String olo4_1_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_1)).getText());
-                String olo4_2_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_2)).getText());
-                String olo4_3_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_3)).getText());
-                String olo4_4_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_4)).getText());
-                String olo4_5_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_5)).getText());
-                String olo4_6_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_6)).getText());
-                String olo4_7_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_7)).getText());
+                if (radio_button_1 != -1 && radio_button_olo4_1 != -1 && radio_button_olo4_2 != -1 && radio_button_olo4_3 != -1 &&
+                        radio_button_olo4_4 != -1 && radio_button_olo4_5 != -1 && radio_button_olo4_6 != -1 && radio_button_olo4_7 != -1 ) {
+                    String olo4_1_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_1)).getText());
+                    String olo4_2_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_2)).getText());
+                    String olo4_3_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_3)).getText());
+                    String olo4_4_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_4)).getText());
+                    String olo4_5_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_5)).getText());
+                    String olo4_6_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_6)).getText());
+                    String olo4_7_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_7)).getText());
 
-                String radioSelected = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
+                    String radioSelected = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
 
-                if (radio_button_1 != -1) {
+
                     answers.put("OLO4", olo4_1_radio_group_answer + ";" + olo4_2_radio_group_answer + ";" + olo4_3_radio_group_answer + ";" + olo4_4_radio_group_answer +
                             olo4_5_radio_group_answer + ";" + olo4_6_radio_group_answer + ";" + olo4_7_radio_group_answer);
 
