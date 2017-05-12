@@ -58,7 +58,7 @@ dependencies {
 
     compile "com.android.support:appcompat-v7:$support_libs"
 //    compile "com.github.denzilferreira:com.aware.plugin.ambient_noise:$aware_libs"
-    compile "com.github.rkdarst:com.aware.plugin.ambient_noise:no-raw-data-SNAPSHOT"
+    compile "com.github.rkdarst:com.aware.plugin.ambient_noise:HYKS-live-SNAPSHOT"
 
     compile 'joda-time:joda-time:2.9.6'
     compile 'com.squareup.okhttp3:okhttp:3.4.2'
