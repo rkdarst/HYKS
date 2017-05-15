@@ -31,39 +31,41 @@ public class ESM_Evening_Questionnaire extends BroadcastReceiver {
 
         Log.d("Niels", "Trigger evening received");
 
-        eveningAnsweredToday = false;
+        buildEveningESM(context);
 
-        // Check if evening questionnaire has been answered
-        try {
-            Calendar today = Calendar.getInstance();
-            today.set(Calendar.HOUR_OF_DAY,0);
-            today.set(Calendar.MINUTE,0);
-            today.set(Calendar.SECOND,0);
-
-            Cursor esm_data = context.getContentResolver().query(ESM_Provider.ESM_Data.CONTENT_URI, null,
-                    ESM_Provider.ESM_Data.TIMESTAMP + ">=" + today.getTimeInMillis() +
-                            " AND " + ESM_Provider.ESM_Data.TRIGGER + " LIKE 'Evening'" +
-                            " AND " + ESM_Provider.ESM_Data.STATUS + "=" + ESM.STATUS_ANSWERED, null, null);
-            if (esm_data != null) {
-                if (esm_data.getCount() > 1) {
-                    // Evening has been answered today
-                    eveningAnsweredToday = true;
-                }
-            }
-            else Log.d("Niels", "cursor is null");
-            if(esm_data != null && !esm_data.isClosed()) {
-                esm_data.close();
-            }
-        }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
-        // Time to launch an ESM
-        if (!eveningAnsweredToday) {
-            // Include evening questionnaire
-            buildEveningESM(context);
-        }
+//        eveningAnsweredToday = false;
+//
+//        // Check if evening questionnaire has been answered
+//        try {
+//            Calendar today = Calendar.getInstance();
+//            today.set(Calendar.HOUR_OF_DAY,0);
+//            today.set(Calendar.MINUTE,0);
+//            today.set(Calendar.SECOND,0);
+//
+//            Cursor esm_data = context.getContentResolver().query(ESM_Provider.ESM_Data.CONTENT_URI, null,
+//                    ESM_Provider.ESM_Data.TIMESTAMP + ">=" + today.getTimeInMillis() +
+//                            " AND " + ESM_Provider.ESM_Data.TRIGGER + " LIKE 'Evening'" +
+//                            " AND " + ESM_Provider.ESM_Data.STATUS + "=" + ESM.STATUS_ANSWERED, null, null);
+//            if (esm_data != null) {
+//                if (esm_data.getCount() > 1) {
+//                    // Evening has been answered today
+//                    eveningAnsweredToday = true;
+//                }
+//            }
+//            else Log.d("Niels", "cursor is null");
+//            if(esm_data != null && !esm_data.isClosed()) {
+//                esm_data.close();
+//            }
+//        }
+//        catch (NullPointerException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Time to launch an ESM
+//        if (!eveningAnsweredToday) {
+//            // Include evening questionnaire
+//            buildEveningESM(context);
+//        }
     }
 
     private void buildEveningESM(Context context) {
