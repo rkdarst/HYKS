@@ -62,6 +62,7 @@ public class Plugin extends Aware_Plugin {
             Aware.setSetting(this, Settings.STATUS_PLUGIN_HYKS, true);
 
             Aware.startAWARE(this);
+            sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
         }
         return START_STICKY;
     }

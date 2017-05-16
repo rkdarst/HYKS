@@ -44,8 +44,9 @@ public class HYKS extends AppCompatActivity {
 
         setContentView(R.layout.main_ui);
 
-        Intent aware = new Intent(this, Aware.class);
-        startService(aware);
+        //Intent aware = new Intent(this, Aware.class);
+        //startService(aware);
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
 
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
@@ -105,8 +106,19 @@ public class HYKS extends AppCompatActivity {
                     // Probes
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_BATTERY, true);
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_COMMUNICATION_EVENTS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_CALLS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_MESSAGES, true);
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_SCREEN, true);
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_APPLICATIONS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_INSTALLATIONS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_NOTIFICATIONS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_LOCATION_GPS, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_LOCATION_GPS, 600);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_LOCATION_NETWORK, true);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_LOCATION_NETWORK, 600);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.MIN_LOCATION_GPS_ACCURACY, 0);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.LOCATION_EXPIRATION_TIME, 0);
+                    Aware.setSetting(getApplicationContext(), Aware_Preferences.LOCATION_SAVE_ALL, true);
 
                     // Clear (local) data after it has been synced.
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_CLEAN_OLD_DATA, 4);
