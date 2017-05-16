@@ -44,8 +44,9 @@ public class HYKS extends AppCompatActivity {
 
         setContentView(R.layout.main_ui);
 
-        Intent aware = new Intent(this, Aware.class);
-        startService(aware);
+        //Intent aware = new Intent(this, Aware.class);
+        //startService(aware);
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
 
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
