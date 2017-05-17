@@ -237,6 +237,11 @@ public class olo extends Activity {
 
                     if (radioSelected.equals("Kyllä")) {
                         int radio_button_olo4_7_1 = olo4_7_1_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
+                        if (radio_button_olo4_7_1 == -1) {
+                            Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                            toast.show();
+                            return;
+                        }
                         String olo4_7_1_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_7_1)).getText());
 
                         answers.put("OLO4_1", olo4_7_1_radio_group_answer + ";");
