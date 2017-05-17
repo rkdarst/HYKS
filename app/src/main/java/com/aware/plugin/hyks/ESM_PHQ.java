@@ -32,8 +32,8 @@ public class ESM_PHQ extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSound(soundUri)
                 .setAutoCancel(true)
-                .setContentTitle("Kyselylomake odottaa vastaustasi")
-                .setContentText("Avaa lomake vastataksesi kyselyyn");
+                .setContentTitle(context.getString(R.string.phq9_notification_title))
+                .setContentText(context.getString(R.string.phq9_notification_text));
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         // Will display the notification in the notification bar

@@ -57,12 +57,12 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         if (Aware.getSetting(this, START_HOUR).length() == 0) {
             Aware.setSetting(this, START_HOUR, 8);
         }
-        start_hour.setSummary("Usual wakeup hour: " + Aware.getSetting(getApplicationContext(), START_HOUR));
+        start_hour.setSummary(getString(R.string.config_usual_wakeup_hour) + Aware.getSetting(getApplicationContext(), START_HOUR));
         end_hour = (EditTextPreference) findPreference(END_HOUR);
         if (Aware.getSetting(this, END_HOUR).length() == 0) {
             Aware.setSetting(this, END_HOUR, 22);
         }
-        end_hour.setSummary("Usual bedtime hour: " + Aware.getSetting(getApplicationContext(), END_HOUR));
+        end_hour.setSummary(getString(R.string.config_usual_bedtime_hour) + Aware.getSetting(getApplicationContext(), END_HOUR));
     }
 
     @Override
@@ -79,11 +79,11 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         }
         if (setting.getKey().equals(START_HOUR)) {
             Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, "8"));
-            setting.setSummary("Usual wakeup hour: " + Aware.getSetting(getApplicationContext(), START_HOUR));
+            setting.setSummary(getString(R.string.config_usual_wakeup_hour) + Aware.getSetting(getApplicationContext(), START_HOUR));
         }
         if (setting.getKey().equals(END_HOUR)) {
             Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, "22"));
-            setting.setSummary("Usual bedtime hour: " + Aware.getSetting(getApplicationContext(), END_HOUR));
+            setting.setSummary(getString(R.string.config_usual_bedtime_hour) + Aware.getSetting(getApplicationContext(), END_HOUR));
         }
     }
 }

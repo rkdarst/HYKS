@@ -73,32 +73,32 @@ public class ESM_Evening_Questionnaire extends BroadcastReceiver {
             ESMFactory factory = new ESMFactory();
 
             ESM_Likert evening_1 = new ESM_Likert();
-            evening_1.setLikertMaxLabel("KYLLÄ")
-                    .setLikertMinLabel("EI")
+            evening_1.setLikertMaxLabel(context.getString(R.string.esm_scale_yes))
+                    .setLikertMinLabel(context.getString(R.string.esm_scale_no))
                     .setLikertStep(1)
                     .setTitle(context.getResources().getString(R.string.evening_1))
                     .setTrigger("Evening")
-                    .setSubmitButton("OK")
+                    .setSubmitButton(context.getString(R.string.esm_submit) + "(Evening)")
                     .setInstructions("");
             factory.addESM(evening_1);
 
             ESM_Likert evening_2 = new ESM_Likert();
-            evening_2.setLikertMaxLabel("KYLLÄ")
-                    .setLikertMinLabel("EI")
+            evening_2.setLikertMaxLabel(context.getString(R.string.esm_scale_yes))
+                    .setLikertMinLabel(context.getString(R.string.esm_scale_no))
                     .setLikertStep(1)
                     .setTitle(context.getResources().getString(R.string.evening_2))
                     .setTrigger("Evening")
-                    .setSubmitButton("OK")
+                    .setSubmitButton(context.getString(R.string.esm_submit))
                     .setInstructions("");
             factory.addESM(evening_2);
 
             ESM_Likert evening_3 = new ESM_Likert();
-            evening_3.setLikertMaxLabel("KYLLÄ")
-                    .setLikertMinLabel("EI")
+            evening_3.setLikertMaxLabel(context.getString(R.string.esm_scale_yes))
+                    .setLikertMinLabel(context.getString(R.string.esm_scale_no))
                     .setLikertStep(1)
                     .setTitle(context.getResources().getString(R.string.evening_3))
                     .setTrigger("Evening")
-                    .setSubmitButton("OK")
+                    .setSubmitButton(context.getString(R.string.esm_submit))
                     .setInstructions("");
             factory.addESM(evening_3);
 

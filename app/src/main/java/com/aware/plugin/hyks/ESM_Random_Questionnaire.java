@@ -38,9 +38,8 @@ public class ESM_Random_Questionnaire extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSound(soundUri)
                 .setAutoCancel(true)
-                // TODO: remove OLO from title - debug only
-                .setContentTitle("OLO - Kyselylomake odottaa vastaustasi")
-                .setContentText("Avaa lomake vastataksesi kyselyyn");
+                .setContentTitle(context.getString(R.string.olo_notification_title))
+                .setContentText(context.getString(R.string.olo_notification_text));
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         // Will display the notification in the notification bar

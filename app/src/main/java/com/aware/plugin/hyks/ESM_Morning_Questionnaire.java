@@ -72,58 +72,58 @@ public class ESM_Morning_Questionnaire extends BroadcastReceiver {
             ESMFactory factory = new ESMFactory();
 
             ESM_Radio morning_1 = new ESM_Radio();
-            morning_1.addRadio("0-15 min")
-                    .addRadio("15-30 min")
-                    .addRadio("30-60 min")
-                    .addRadio("yli 60 min")
+            morning_1.addRadio(context.getString(R.string.morning_1_0_15))
+                    .addRadio(context.getString(R.string.morning_1_15_30))
+                    .addRadio(context.getString(R.string.morning_1_30_60))
+                    .addRadio(context.getString(R.string.morning_1_60_plus))
                     .setTitle(context.getResources().getString(R.string.morning_1))
                     .setTrigger("Morning")
-                    .setSubmitButton("OK")
+                    .setSubmitButton(context.getString(R.string.esm_submit) + "(Evening)")
                     .setInstructions("");
             factory.addESM(morning_1);
 
             ESM_Radio morning_2 = new ESM_Radio();
-            morning_2.addRadio("0-1")
-                    .addRadio("2-3")
-                    .addRadio("4-5")
-                    .addRadio("enemmän kuin 5")
+            morning_2.addRadio(context.getString(R.string.morning_2_0_1))
+                    .addRadio(context.getString(R.string.morning_2_2_3))
+                    .addRadio(context.getString(R.string.morning_2_4_5))
+                    .addRadio(context.getString(R.string.morning_2_5_plus))
                     .setTitle(context.getResources().getString(R.string.morning_2))
                     .setTrigger("Morning")
-                    .setSubmitButton("OK")
+                    .setSubmitButton(context.getString(R.string.esm_submit))
                     .setInstructions("");
             factory.addESM(morning_2);
 
             ESM_Radio morning_3 = new ESM_Radio();
-            morning_3.addRadio("0-15 min")
-                    .addRadio("15-30 min")
-                    .addRadio("30-60 min")
-                    .addRadio("yli 60 min")
+            morning_3.addRadio(context.getString(R.string.morning_3_0_15))
+                    .addRadio(context.getString(R.string.morning_3_0_15))
+                    .addRadio(context.getString(R.string.morning_3_0_15))
+                    .addRadio(context.getString(R.string.morning_3_0_15))
                     .setTitle(context.getResources().getString(R.string.morning_3))
                     .setTrigger("Morning")
-                    .setSubmitButton("OK")
+                    .setSubmitButton(context.getString(R.string.esm_submit))
                     .setInstructions("");
             factory.addESM(morning_3);
 
             ESM_Likert morning_4 = new ESM_Likert();
             morning_4.setLikertMax(7)
-                    .setLikertMaxLabel("KYLLÄ")
-                    .setLikertMinLabel("EI")
+                    .setLikertMaxLabel(context.getString(R.string.esm_scale_yes))
+                    .setLikertMinLabel(context.getString(R.string.esm_scale_no))
                     .setLikertStep(1)
                     .setTitle(context.getResources().getString(R.string.morning_4))
                     .setInstructions("")
-                    .setSubmitButton("OK");
+                    .setSubmitButton(context.getString(R.string.esm_submit));
             factory.addESM(morning_4);
 
             ESM_Freetext morning_5 = new ESM_Freetext();
             morning_5.setTitle(context.getResources().getString(R.string.morning_5))
                     .setInstructions("")
-                    .setSubmitButton("OK");
+                    .setSubmitButton(context.getString(R.string.esm_submit));
             factory.addESM(morning_5);
 
             ESM_Freetext morning_6 = new ESM_Freetext();
             morning_6.setTitle(context.getResources().getString(R.string.morning_6))
                     .setInstructions("")
-                    .setSubmitButton("OK");
+                    .setSubmitButton(context.getString(R.string.esm_submit));
             factory.addESM(morning_6);
 
             //Queue them

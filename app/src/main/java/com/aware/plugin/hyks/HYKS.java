@@ -1,5 +1,6 @@
 package com.aware.plugin.hyks;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.aware.Applications;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
+import com.aware.providers.Scheduler_Provider;
 import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_TTS;
 import com.aware.utils.Scheduler;
@@ -92,7 +94,7 @@ public class HYKS extends AppCompatActivity {
                     if (url.length() < 20) {
                         if (!url.matches("[0-9a-f]{16}")) {
                             Toast toast = Toast.makeText(getApplicationContext(),
-                                    "Join must be either URL or 16-digit secret ID",
+                                    R.string.core_secret_id_error,
                                     Toast.LENGTH_LONG);
                             toast.show();
                             return;
@@ -132,7 +134,7 @@ public class HYKS extends AppCompatActivity {
 
                     Aware.startPlugin(getApplicationContext(), "com.aware.plugin.hyks");
 
-                    Toast.makeText(getApplicationContext(), "Thanks for joining!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.core_thanks_for_joining, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -143,7 +145,7 @@ public class HYKS extends AppCompatActivity {
                     Intent sync = new Intent(Aware.ACTION_AWARE_SYNC_DATA);
                     sendBroadcast(sync);
 
-                    Toast.makeText(getApplicationContext(), "Syncing data...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.core_syncing_data, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -152,7 +154,7 @@ public class HYKS extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     setSchedule();
-                    Toast.makeText(getApplicationContext(), "Starting schedule", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.core_starting_schedule, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -193,8 +195,14 @@ public class HYKS extends AppCompatActivity {
         }
 
         // Random schedule
+        // Delete already existing random schedules
+        Context context = getApplicationContext();
+        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
+        // This second one is for backwards compatibility.
+        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_random%'", null);
+        // Set new schedule
         try{
-            Scheduler.Schedule schedule_random = new Scheduler.Schedule("schedule_random");
+            Scheduler.Schedule schedule_random = new Scheduler.Schedule("schedule_olo");
             schedule_random
                     .random(3, 30)
 //                    .addHour(startHour + 2)
