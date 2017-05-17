@@ -2,10 +2,33 @@
     <string name="app_name">HYKS</string>
     <string name="title_activity_hyks">HYKS</string>
 
+    <string name="core_syncing_data">Syncing data...</string>
+    <string name="core_starting_schedule">Starting schedule</string>
+    <string name="core_thanks_for_joining">Thanks for joining!</string>
+    <string name="core_secret_id_error">Join must be either URL or 16-digit secret ID</string>
+    <string name="config_usual_wakeup_hour">Usual wakeup hour:</string>
+    <string name="config_usual_bedtime_hour">Usual bedtime hour:</string>
+
+    <string name="submit">Lähetä</string>
+    <string name="esm_scale_yes">KYLLÄ</string>
+    <string name="esm_scale_no">EI</string>
+    <string name="esm_submit">OK</string>
 
     <string name="morning_1">Kuinka kauan kesti ennen kuin nukahdit?</string>
+    <string name="morning_1_0_15">0-15 min</string>
+    <string name="morning_1_15_30">15-30 min</string>
+    <string name="morning_1_30_60">30-60 min</string>
+    <string name="morning_1_60_plus">yli 60 min</string>
     <string name="morning_2">Kuinka monta kertaa heräsit yön aikana?</string>
+    <string name="morning_2_0_1">0-1</string>
+    <string name="morning_2_2_3">2-3</string>
+    <string name="morning_2_4_5">4-5</string>
+    <string name="morning_2_5_plus">enemmän kuin 5</string>
     <string name="morning_3">Kuinka kauan olit hereillä ennen kuin nousit ylös aamulla?</string>
+    <string name="morning_3_0_15">0-15 min</string>
+    <string name="morning_3_15_30">15-30 min</string>
+    <string name="morning_3_30_60">30-60 min</string>
+    <string name="morning_3_60_plus">yli 60 min</string>
     <string name="morning_4">Nukuitko hyvin?</string>
     <string name="morning_5">Mihin aikaan nukahdit?</string>
     <string name="morning_6">Mihin aikaan heräsit?</string>
@@ -14,7 +37,10 @@
     <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
     <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
 
+    <string name="title_activity_olo">HYKS</string>
     <string name="olo_instructions">OLO instructions</string>
+    <string name="olo_notification_title">OLO - Kyselylomake odottaa vastaustasi</string>
+    <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="olo_1">Juuri nyt tunnen itseni.</string>
     <string name="olo_1_1">iloiseksi</string>
     <string name="olo_1_2">väsyneeksi</string>
@@ -78,8 +104,10 @@
     <string name="olo_4_7">Oletko harrastanut kuntoliikuntaa vähintään 30min</string>
     <string name="olo_4_7_1">Kuinka raskasta kuntoliikuntaa harrastit</string>
     <string name="olo_4_7_2">Tämä piippaus häiritsi minua</string>
-    
 
+    <string name="title_activity_phq9">HYKS</string>
+    <string name="phq9_notification_title">Kyselylomake odottaa vastaustasi</string>
+    <string name="phq9_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>
     <string name="phq9_1">Asioiden tekeminen kiinnostaa hyvin vähän tai ei juuri tuota mielihyvää</string>
     <string name="phq9_2">Alakuloisuus, masentuneisuus tai toivottomuus</string>
@@ -95,9 +123,4 @@
     <string name="phq9_answer_2">Useina päivinä</string>
     <string name="phq9_answer_3">Useammin kuin puolet ajasta</string>
     <string name="phq9_answer_4">Lähes joka päivä</string>
-
-    <string name="submit">Lähetä</string>
-
-    <string name="title_activity_phq9">HYKS</string>
-    <string name="title_activity_olo">HYKS</string>
 </resources>
