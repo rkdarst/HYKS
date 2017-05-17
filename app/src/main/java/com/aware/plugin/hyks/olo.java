@@ -22,7 +22,7 @@ import java.util.HashMap;
  */
 
 public class olo extends Activity {
-    CharSequence warning = "Muista täyttää kaikki kysymykset!";
+    CharSequence warning = getString(R.string.warning_missing_answer);
     long start_time;
     HashMap<String, String> answers = new HashMap<>();
 

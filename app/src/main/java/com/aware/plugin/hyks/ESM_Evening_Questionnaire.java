@@ -78,7 +78,7 @@ public class ESM_Evening_Questionnaire extends BroadcastReceiver {
                     .setLikertStep(1)
                     .setTitle(context.getResources().getString(R.string.evening_1))
                     .setTrigger("Evening")
-                    .setSubmitButton(context.getString(R.string.esm_submit) + "(Evening)")
+                    .setSubmitButton(context.getString(R.string.esm_submit))
                     .setInstructions("");
             factory.addESM(evening_1);
 

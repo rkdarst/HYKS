@@ -24,7 +24,7 @@ import static com.aware.Aware.TAG;
 
 public class phq9 extends Activity {
 
-    CharSequence warning = "Muista täyttää kaikki kysymykset!";
+    CharSequence warning = getString(R.string.warning_missing_answer);
     long start_time;
     String answers;
 

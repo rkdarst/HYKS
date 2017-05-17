@@ -8,6 +8,7 @@
     <string name="core_secret_id_error">Join must be either URL or 16-digit secret ID</string>
     <string name="config_usual_wakeup_hour">Usual wakeup hour:</string>
     <string name="config_usual_bedtime_hour">Usual bedtime hour:</string>
+    <string name="warning_missing_answer">Muista täyttää kaikki kysymykset!</string>
 
     <string name="submit">Lähetä</string>
     <string name="esm_scale_yes">KYLLÄ</string>
@@ -38,8 +39,8 @@
     <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
 
     <string name="title_activity_olo">HYKS</string>
-    <string name="olo_instructions">OLO instructions</string>
-    <string name="olo_notification_title">OLO - Kyselylomake odottaa vastaustasi</string>
+    <string name="olo_instructions">instructions</string>
+    <string name="olo_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="olo_1">Juuri nyt tunnen itseni.</string>
     <string name="olo_1_1">iloiseksi</string>
