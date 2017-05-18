@@ -11,14 +11,14 @@
 
     <EditTextPreference
         android:key="setting_start_hour"
-        android:defaultValue="8"
+        android:defaultValue="@integer/default_start_time"
         android:persistent="true"
         android:summary="Usual wakeup hour"
         android:inputType="numberDecimal"/>
 
     <EditTextPreference
         android:key="setting_end_hour"
-        android:defaultValue="22"
+        android:defaultValue="@integer/default_end_time"
         android:persistent="true"
         android:summary="Usual bedtime hour"
         android:inputType="numberDecimal"/>
