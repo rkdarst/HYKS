@@ -97,7 +97,14 @@ public class HYKS extends AppCompatActivity {
                             toast.show();
                             return;
                         }
-                        url = "https://aware.koota.zgib.net/index.php/aware/v1/" + url + "?crt_sha256=436669a4920ac08623357aaca77c935bbc3bf3906a9c962eb822edff021fcc42&crt_url=https%3A%2F%2Fdata.koota.cs.aalto.fi%2Fstatic%2Fserver-aware.crt";
+                        if (!deviceidChecksumValid(url)) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    R.string.core_secret_id_checksum_error,
+                                    Toast.LENGTH_LONG);
+                            toast.show();
+                            return;
+                        }
+                        url = "https://aware.koota.zgib.net/index.php/aware/v1/" + url.toLowerCase() + "?crt_sha256=436669a4920ac08623357aaca77c935bbc3bf3906a9c962eb822edff021fcc42&crt_url=https%3A%2F%2Fdata.koota.cs.aalto.fi%2Fstatic%2Fserver-aware.crt";
                     }
                     Aware.joinStudy(getApplicationContext(), url);
 
@@ -249,5 +256,27 @@ public class HYKS extends AppCompatActivity {
         } else {
             sync_data.setVisibility(View.INVISIBLE);
         }
+    }
+
+    /*
+     * The Koota checksuming algorithm.  This is a two-digit base16 lund algorithm, basically.
+     */
+    static public boolean deviceidChecksumValid(String device_id) {
+        int factor = 2;
+        int sum = 0;     // Running checksum
+        int base = 16;
+        int digits = 2;  // number of checksum digits
+        int base2 = (int)Math.pow(base, digits);
+
+        sum = Integer.parseInt(device_id.substring(device_id.length()-digits), base);
+        device_id = device_id.substring(0, device_id.length()-digits);
+        for (int i = device_id.length()-1 ; i >= 0 ; i--) {
+            int addend = factor * Integer.parseInt(device_id.substring(i, i+1), base);
+            factor = 2 - factor + 1;
+            addend = (addend / base2) + (addend % base2);
+            sum += addend;
+        }
+        int remainder = sum % base2;
+        return remainder == 0;
     }
 }
