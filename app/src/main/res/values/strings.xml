@@ -31,8 +31,8 @@
     <string name="morning_3_30_60">30-60 min</string>
     <string name="morning_3_60_plus">yli 60 min</string>
     <string name="morning_4">Nukuitko hyvin?</string>
-    <string name="morning_5">Mihin aikaan nukahdit?</string>
-    <string name="morning_6">Mihin aikaan heräsit?</string>
+    <string name="morning_5">Mihin aikaan nukahdit? (HH:MM)</string>
+    <string name="morning_6">Mihin aikaan heräsit? (HH:MM)</string>
 
     <string name="evening_1">Tämä oli tavanomainen päivä.</string>
     <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
