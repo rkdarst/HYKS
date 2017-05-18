@@ -90,7 +90,7 @@ public class HYKS extends AppCompatActivity {
                     EditText edittext_study_url = (EditText) findViewById(R.id.edittext_study_url);
                     String url = String.valueOf(edittext_study_url.getText());
                     if (url.length() < 20) {
-                        if (!url.matches("[0-9a-f]{16}")) {
+                        if (!url.matches("[0-9a-fA-F]{16}")) {
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     R.string.core_secret_id_error,
                                     Toast.LENGTH_LONG);

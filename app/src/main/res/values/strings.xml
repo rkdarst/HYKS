@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">HYKS</string>
-    <string name="title_activity_hyks">HYKS</string>
+    <string name="app_name">MoMoMood Pilot</string>
+    <string name="title_activity_hyks">MoMoMood Pilot</string>
 
     <string name="core_syncing_data">Syncing data...</string>
     <string name="core_starting_schedule">Starting schedule</string>
@@ -44,7 +44,7 @@
     <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
     <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
 
-    <string name="title_activity_olo">HYKS</string>
+    <string name="title_activity_olo">{@string/app_name}</string>
     <string name="olo_instructions">instructions</string>
     <string name="olo_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
@@ -112,7 +112,7 @@
     <string name="olo_4_7_1">Kuinka raskasta kuntoliikuntaa harrastit</string>
     <string name="olo_4_7_2">Tämä piippaus häiritsi minua</string>
 
-    <string name="title_activity_phq9">HYKS</string>
+    <string name="title_activity_phq9">{@string/app_name}</string>
     <string name="phq9_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="phq9_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>
