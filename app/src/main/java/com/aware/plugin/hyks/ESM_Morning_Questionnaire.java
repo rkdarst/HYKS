@@ -78,7 +78,7 @@ public class ESM_Morning_Questionnaire extends BroadcastReceiver {
                     .addRadio(context.getString(R.string.morning_1_60_plus))
                     .setTitle(context.getResources().getString(R.string.morning_1))
                     .setTrigger("Morning")
-                    .setSubmitButton(context.getString(R.string.esm_submit) + "(Evening)")
+                    .setSubmitButton(context.getString(R.string.esm_submit))
                     .setInstructions("");
             factory.addESM(morning_1);
 

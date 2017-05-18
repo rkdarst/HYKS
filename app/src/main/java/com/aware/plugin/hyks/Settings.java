@@ -45,6 +45,9 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
 
     @Override
     protected void onResume() {
+        int START_HOUR_DEFAULT = getResources().getInteger(R.integer.default_start_time);
+        int END_HOUR_DEFAULT = getResources().getInteger(R.integer.default_end_time);
+
         super.onResume();
 
         status = (CheckBoxPreference) findPreference(STATUS_PLUGIN_HYKS);
@@ -55,18 +58,21 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
 
         start_hour = (EditTextPreference) findPreference(START_HOUR);
         if (Aware.getSetting(this, START_HOUR).length() == 0) {
-            Aware.setSetting(this, START_HOUR, 8);
+            Aware.setSetting(this, START_HOUR, START_HOUR_DEFAULT);
         }
         start_hour.setSummary(getString(R.string.config_usual_wakeup_hour) + Aware.getSetting(getApplicationContext(), START_HOUR));
         end_hour = (EditTextPreference) findPreference(END_HOUR);
         if (Aware.getSetting(this, END_HOUR).length() == 0) {
-            Aware.setSetting(this, END_HOUR, 22);
+            Aware.setSetting(this, END_HOUR, END_HOUR_DEFAULT);
         }
         end_hour.setSummary(getString(R.string.config_usual_bedtime_hour) + Aware.getSetting(getApplicationContext(), END_HOUR));
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        int START_HOUR_DEFAULT = getResources().getInteger(R.integer.default_start_time);
+        int END_HOUR_DEFAULT = getResources().getInteger(R.integer.default_end_time);
+
         Preference setting = findPreference(key);
         if (setting.getKey().equals(STATUS_PLUGIN_HYKS)) {
             Aware.setSetting(this, key, sharedPreferences.getBoolean(key, false));
@@ -78,11 +84,11 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
             Aware.stopPlugin(getApplicationContext(), "com.aware.plugin.hyks");
         }
         if (setting.getKey().equals(START_HOUR)) {
-            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, "8"));
+            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, String.valueOf(START_HOUR_DEFAULT)));
             setting.setSummary(getString(R.string.config_usual_wakeup_hour) + Aware.getSetting(getApplicationContext(), START_HOUR));
         }
         if (setting.getKey().equals(END_HOUR)) {
-            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, "22"));
+            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getString(key, String.valueOf(END_HOUR_DEFAULT)));
             setting.setSummary(getString(R.string.config_usual_bedtime_hour) + Aware.getSetting(getApplicationContext(), END_HOUR));
         }
     }

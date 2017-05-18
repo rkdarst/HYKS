@@ -25,6 +25,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.round;
+
 /**
  * Created by niels on 07/22/2016.
  */
@@ -35,10 +37,6 @@ public class HYKS extends AppCompatActivity {
     private Button join_study, set_settings, sync_data, set_schedule;
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
-
-    // TODO: make these hours configurable
-    private int startHour = 8;
-    private int endHour = 22;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,7 +97,14 @@ public class HYKS extends AppCompatActivity {
                             toast.show();
                             return;
                         }
-                        url = "https://aware.koota.zgib.net/index.php/aware/v1/" + url + "?crt_sha256=436669a4920ac08623357aaca77c935bbc3bf3906a9c962eb822edff021fcc42&crt_url=https%3A%2F%2Fdata.koota.cs.aalto.fi%2Fstatic%2Fserver-aware.crt";
+                        if (!deviceidChecksumValid(url)) {
+                            Toast toast = Toast.makeText(getApplicationContext(),
+                                    R.string.core_secret_id_checksum_error,
+                                    Toast.LENGTH_LONG);
+                            toast.show();
+                            return;
+                        }
+                        url = "https://aware.koota.zgib.net/index.php/aware/v1/" + url.toLowerCase() + "?crt_sha256=436669a4920ac08623357aaca77c935bbc3bf3906a9c962eb822edff021fcc42&crt_url=https%3A%2F%2Fdata.koota.cs.aalto.fi%2Fstatic%2Fserver-aware.crt";
                     }
                     Aware.joinStudy(getApplicationContext(), url);
 
@@ -162,14 +167,20 @@ public class HYKS extends AppCompatActivity {
 
     private void setSchedule() {
 
+        // TODO: make these hours configurable
+        int startHour = getResources().getInteger(R.integer.default_start_time);
+        int endHour   = getResources().getInteger(R.integer.default_end_time);
+        String startHourStr = Aware.getSetting(getApplicationContext(), Settings.START_HOUR);
+        String endHourStr   = Aware.getSetting(getApplicationContext(), Settings.END_HOUR);
+        if (startHourStr.length() > 0)  startHour = Integer.parseInt(startHourStr);
+        if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr) - 1;
+
         // Morning schedule
         try{
             Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
             schedule_morning
-                    //.addHour(startHour)
-                    //.addHour(startHour + 2)
-                    .addHour(8)
-                    .addHour(10)
+                    .addHour(startHour)
+                    .addHour(startHour + 2)
                     .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_MORNING_TRIGGERED");
@@ -183,9 +194,8 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
             schedule_evening
-                    .addHour(22)
-//                    .addHour(endHour)
-//                    .setInterval(60)
+                    .addHour(endHour)
+                    .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_EVENING_TRIGGERED");
 
@@ -201,18 +211,22 @@ public class HYKS extends AppCompatActivity {
         // This second one is for backwards compatibility.
         context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_random%'", null);
         // Set new schedule
+        int olo1_start = startHour + 2;
+        int olo3_end   = endHour - 2;
+        int olo2_start = (int) round( olo1_start + (olo3_end-olo1_start)/3.);
+        int olo3_start = (int) round( olo1_start + 2*(olo3_end-olo1_start)/3.);
+        int olo1_end   = olo2_start-2;
+        int olo2_end   = olo3_start - 2;
         try{
-            Scheduler.Schedule schedule_random = new Scheduler.Schedule("schedule_olo");
-            schedule_random
-                    .random(3, 30)
-//                    .addHour(startHour + 2)
-//                    .addHour(endHour - 2)
-                    .addHour(12)
-                    .addHour(20)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_RANDOM_TRIGGERED");
-
-            Scheduler.saveSchedule(this, schedule_random);
+            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
+            Scheduler.Schedule schedule_random2 = new Scheduler.Schedule("schedule_olo2");
+            Scheduler.Schedule schedule_random3 = new Scheduler.Schedule("schedule_olo3");
+            schedule_random1.random(1, 30).addHour(olo1_start).addHour(olo1_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+            schedule_random2.random(1, 30).addHour(olo2_start).addHour(olo2_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+            schedule_random3.random(1, 30).addHour(olo3_start).addHour(olo3_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+            Scheduler.saveSchedule(this, schedule_random1);
+            Scheduler.saveSchedule(this, schedule_random2);
+            Scheduler.saveSchedule(this, schedule_random3);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -242,5 +256,27 @@ public class HYKS extends AppCompatActivity {
         } else {
             sync_data.setVisibility(View.INVISIBLE);
         }
+    }
+
+    /*
+     * The Koota checksuming algorithm.  This is a two-digit base16 lund algorithm, basically.
+     */
+    static public boolean deviceidChecksumValid(String device_id) {
+        int factor = 2;
+        int sum = 0;     // Running checksum
+        int base = 16;
+        int digits = 2;  // number of checksum digits
+        int base2 = (int)Math.pow(base, digits);
+
+        sum = Integer.parseInt(device_id.substring(device_id.length()-digits), base);
+        device_id = device_id.substring(0, device_id.length()-digits);
+        for (int i = device_id.length()-1 ; i >= 0 ; i--) {
+            int addend = factor * Integer.parseInt(device_id.substring(i, i+1), base);
+            factor = 2 - factor + 1;
+            addend = (addend / base2) + (addend % base2);
+            sum += addend;
+        }
+        int remainder = sum % base2;
+        return remainder == 0;
     }
 }

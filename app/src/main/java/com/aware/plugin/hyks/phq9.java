@@ -24,7 +24,6 @@ import static com.aware.Aware.TAG;
 
 public class phq9 extends Activity {
 
-    CharSequence warning = "Muista täyttää kaikki kysymykset!";
     long start_time;
     String answers;
 
@@ -95,7 +94,7 @@ public class phq9 extends Activity {
 
                     insert_db();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }

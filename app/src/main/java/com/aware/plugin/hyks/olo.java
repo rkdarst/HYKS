@@ -22,7 +22,6 @@ import java.util.HashMap;
  */
 
 public class olo extends Activity {
-    CharSequence warning = "Muista täyttää kaikki kysymykset!";
     long start_time;
     HashMap<String, String> answers = new HashMap<>();
 
@@ -54,7 +53,7 @@ public class olo extends Activity {
                     answers.put("OLO1", radio_button_1_answer + ";");
                     prepare_olo_2();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
@@ -86,7 +85,7 @@ public class olo extends Activity {
 
                     prepare_olo_3();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
@@ -164,7 +163,7 @@ public class olo extends Activity {
 
                     prepare_olo_4();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
@@ -238,7 +237,7 @@ public class olo extends Activity {
                     if (radioSelected.equals("Kyllä")) {
                         int radio_button_olo4_7_1 = olo4_7_1_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
                         if (radio_button_olo4_7_1 == -1) {
-                            Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
                             toast.show();
                             return;
                         }
@@ -251,7 +250,7 @@ public class olo extends Activity {
 
                     finish();
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
