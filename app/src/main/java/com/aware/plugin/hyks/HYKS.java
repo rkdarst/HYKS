@@ -165,6 +165,12 @@ public class HYKS extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+    }
+
     private void setSchedule() {
 
         // TODO: make these hours configurable
