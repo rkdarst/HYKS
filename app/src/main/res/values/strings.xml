@@ -49,14 +49,14 @@
     <string name="olo_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="olo_1">Juuri nyt tunnen itseni.</string>
-    <string name="olo_1_1">iloiseksi</string>
-    <string name="olo_1_2">väsyneeksi</string>
-    <string name="olo_1_3">tyytyväiseksi</string>
-    <string name="olo_1_4">hermostuneeksi</string>
-    <string name="olo_1_5">rauhalliseksi</string>
-    <string name="olo_1_6">surulliseksi</string>
-    <string name="olo_1_7">innostuneeksi</string>
-    <string name="olo_1_8">aktiiviseksi</string>
+    <string name="olo_1_1">Juuri nyt tunnen itseni iloiseksi</string>
+    <string name="olo_1_2">Juuri nyt tunnen itseni väsyneeksi</string>
+    <string name="olo_1_3">Juuri nyt tunnen itseni tyytyväiseksi</string>
+    <string name="olo_1_4">Juuri nyt tunnen itseni hermostuneeksi</string>
+    <string name="olo_1_5">Juuri nyt tunnen itseni rauhalliseksi</string>
+    <string name="olo_1_6">Juuri nyt tunnen itseni surulliseksi</string>
+    <string name="olo_1_7">Juuri nyt tunnen itseni innostuneeksi</string>
+    <string name="olo_1_8">Juuri nyt tunnen itseni aktiiviseksi</string>
 
     <string name="olo_2">Mieti, mitä olit tekemässä juuri ennen piippausta</string>
     <string name="olo_2_1">Nautin tästä tekemisestä</string>
@@ -85,7 +85,7 @@
     <string name="olo_3_2_8">muu</string>
     <string name="olo_3_3">Juuri nyt olen yksin</string>
     <string name="olo_3_3_1">Kyllä</string>
-    <string name="olo_3_3_2">Ei</string>
+    <string name="olo_3_3_2">En</string>
     
     <string name="olo_3_3_1_1">Mieti, kenen kanssa olet juuri nyt</string>
     <string name="olo_3_3_1_2">Koen nämä ihmiset miellyttävinä</string>
