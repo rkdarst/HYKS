@@ -244,6 +244,9 @@ public class HYKS extends AppCompatActivity {
                     .setInterval(40320)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_PHQ_TRIGGERED");
+            for (int hour=startHour ; hour <= endHour ; hour++) {
+                schedule_biweekly.addHour(hour);
+            }
 
             Scheduler.saveSchedule(this, schedule_biweekly);
         } catch (JSONException e) {
