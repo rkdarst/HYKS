@@ -40,17 +40,36 @@ public class olo extends Activity {
         Log.d("Niels", "Preparing olo 1!");
         setContentView(R.layout.olo_1);
 
-        final RadioGroup olo1_radio_group = (RadioGroup) findViewById(R.id.olo1_radio_group);
         final Button v1_next = (Button) findViewById(R.id.v1_next);
+
+        final RatingBar rb_olo_1_1 = (RatingBar) findViewById(R.id.rb_olo_1_1);
+        final RatingBar rb_olo_1_2 = (RatingBar) findViewById(R.id.rb_olo_1_2);
+        final RatingBar rb_olo_1_3 = (RatingBar) findViewById(R.id.rb_olo_1_3);
+        final RatingBar rb_olo_1_4 = (RatingBar) findViewById(R.id.rb_olo_1_4);
+        final RatingBar rb_olo_1_5 = (RatingBar) findViewById(R.id.rb_olo_1_5);
+        final RatingBar rb_olo_1_6 = (RatingBar) findViewById(R.id.rb_olo_1_6);
+        final RatingBar rb_olo_1_7 = (RatingBar) findViewById(R.id.rb_olo_1_7);
+        final RatingBar rb_olo_1_8 = (RatingBar) findViewById(R.id.rb_olo_1_8);
+
 
         v1_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int radio_button_1 = olo1_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
+                //int radio_button_1 = olo1_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
 
-                if (radio_button_1 != -1) {
-                    String radio_button_1_answer = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
+                // If unset, these are 0.0.  If set, some nmuber.
+                if (true) {
+                    //String radio_button_1_answer = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
                     // put answer to var
-                    answers.put("OLO1", radio_button_1_answer + ";");
+                    answers.put("OLO1",
+                                      String.valueOf(rb_olo_1_1.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_2.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_3.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_4.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_5.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_6.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_7.getRating()) + ";" +
+                                      String.valueOf(rb_olo_1_8.getRating())
+                                      );
                     prepare_olo_2();
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
