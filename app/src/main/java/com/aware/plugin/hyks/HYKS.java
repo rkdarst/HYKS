@@ -241,7 +241,7 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
             schedule_biweekly
-                    .setInterval(20160)
+                    .setInterval(40320)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_PHQ_TRIGGERED");
 
