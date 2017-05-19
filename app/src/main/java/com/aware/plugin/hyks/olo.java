@@ -15,6 +15,10 @@ import android.widget.Toast;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 import java.util.HashMap;
 
 /**
@@ -23,7 +27,8 @@ import java.util.HashMap;
 
 public class olo extends Activity {
     long start_time;
-    HashMap<String, String> answers = new HashMap<>();
+    //HashMap<String, String> answers = new HashMap<>();
+    JSONObject answers = new JSONObject();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,16 +65,19 @@ public class olo extends Activity {
                 if (true) {
                     //String radio_button_1_answer = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
                     // put answer to var
-                    answers.put("OLO1",
-                                      String.valueOf(rb_olo_1_1.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_2.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_3.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_4.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_5.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_6.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_7.getRating()) + ";" +
-                                      String.valueOf(rb_olo_1_8.getRating())
-                                      );
+                    try {
+                        JSONArray olo1 = new JSONArray();
+                        answers.put("olo_1_1", rb_olo_1_1.getRating());
+                        answers.put("olo_1_2", rb_olo_1_2.getRating());
+                        answers.put("olo_1_3", rb_olo_1_3.getRating());
+                        answers.put("olo_1_4", rb_olo_1_4.getRating());
+                        answers.put("olo_1_5", rb_olo_1_5.getRating());
+                        answers.put("olo_1_6", rb_olo_1_6.getRating());
+                        answers.put("olo_1_7", rb_olo_1_7.getRating());
+                        answers.put("olo_1_8", rb_olo_1_8.getRating());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     prepare_olo_2();
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
@@ -100,8 +108,15 @@ public class olo extends Activity {
                     float v2_3_answer = rb_olo_2_3.getRating();
                     String olo2_4_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
 
-                    answers.put("OLO2", v2_1_answer + ";" + v2_2_answer + ";" + v2_3_answer  + ";" + olo2_4_radio_group_answer);
-
+                    //answers.put("OLO2", v2_1_answer + ";" + v2_2_answer + ";" + v2_3_answer  + ";" + olo2_4_radio_group_answer);
+                    try {
+                        answers.put("olo_2_1", v2_1_answer);
+                        answers.put("olo_2_2", v2_2_answer);
+                        answers.put("olo_2_3", v2_3_answer);
+                        answers.put("olo_2_4", olo2_4_radio_group_answer);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     prepare_olo_3();
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
@@ -167,17 +182,39 @@ public class olo extends Activity {
                     String olo3_2_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_2)).getText());
                     String olo3_3_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_3)).getText());
 
-                    answers.put("OLO3", v3_1_answer + ";" + olo3_2_radio_group_answer + ";" + olo3_3_radio_group_answer);
+                    //answers.put("OLO3", v3_1_answer + ";" + olo3_2_radio_group_answer + ";" + olo3_3_radio_group_answer);
+                    JSONArray olo3 = new JSONArray();
+                    try {
+                        answers.put("olo_3_1", v3_1_answer);
+                        answers.put("olo_3_2", olo3_2_radio_group_answer);
+                        answers.put("olo_3_3", olo3_3_radio_group_answer);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
-                    if (radioSelected.equals("Kyllä")) {
-                        float v3_3_2_1_answer = rb_olo_3_3_2_1.getRating();
-                        answers.put("OLO3_1", v3_3_2_1_answer + ";");
-                    } else if (radioSelected.equals("Ei")) {
-                        float v3_3_1_3_answer = rb_olo_3_3_1_3.getRating();
-                        String olo3_1_5_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_1_5)).getText());
-                        float v3_3_1_2_answer = rb_olo_3_3_1_2.getRating();
-                        float v3_3_1_4_answer = rb_olo_3_3_1_4.getRating();
-                        answers.put("OLO3_2", v3_3_1_3_answer + ";" + olo3_1_5_radio_group_answer + ";" + v3_3_1_2_answer + ";" + v3_3_1_4_answer);
+                    try {
+                        // Clear old answers
+                        answers.put("olo_3_3_2_1", null);
+                        answers.put("olo_3_3_1_3", null);
+                        answers.put("olo_3_1_5", null);
+                        answers.put("olo_3_3_1_2", null);
+                        answers.put("olo_3_3_1_4", null);
+                        if (radioSelected.equals("Kyllä")) {
+                            float v3_3_2_1_answer = rb_olo_3_3_2_1.getRating();
+                            answers.put("olo_3_3_2_1", v3_3_2_1_answer);
+                        } else if (radioSelected.equals("Ei")) {
+                            float v3_3_1_3_answer = rb_olo_3_3_1_3.getRating();
+                            String olo3_1_5_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_1_5)).getText());
+                            float v3_3_1_2_answer = rb_olo_3_3_1_2.getRating();
+                            float v3_3_1_4_answer = rb_olo_3_3_1_4.getRating();
+                            //answers.put("OLO3_2", v3_3_1_3_answer + ";" + olo3_1_5_radio_group_answer + ";" + v3_3_1_2_answer + ";" + v3_3_1_4_answer);
+                            answers.put("olo_3_3_1_3", v3_3_1_3_answer);
+                            answers.put("olo_3_1_5", olo3_1_5_radio_group_answer);
+                            answers.put("olo_3_3_1_2", v3_3_1_2_answer);
+                            answers.put("olo_3_3_1_4", v3_3_1_4_answer);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
                     prepare_olo_4();
@@ -250,8 +287,20 @@ public class olo extends Activity {
                     String radioSelected = String.valueOf(((RadioButton) findViewById(radio_button_1)).getText());
 
 
-                    answers.put("OLO4", olo4_1_radio_group_answer + ";" + olo4_2_radio_group_answer + ";" + olo4_3_radio_group_answer + ";" + olo4_4_radio_group_answer +
-                            olo4_5_radio_group_answer + ";" + olo4_6_radio_group_answer + ";" + olo4_7_radio_group_answer);
+                    //answers.put("OLO4", olo4_1_radio_group_answer + ";" + olo4_2_radio_group_answer + ";" + olo4_3_radio_group_answer + ";" + olo4_4_radio_group_answer +
+                    //        olo4_5_radio_group_answer + ";" + olo4_6_radio_group_answer + ";" + olo4_7_radio_group_answer);
+                    try {
+                        answers.put("olo_4_1", olo4_1_radio_group_answer);
+                        answers.put("olo_4_2", olo4_2_radio_group_answer);
+                        answers.put("olo_4_3", olo4_3_radio_group_answer);
+                        answers.put("olo_4_4", olo4_4_radio_group_answer);
+                        answers.put("olo_4_5", olo4_5_radio_group_answer);
+                        answers.put("olo_4_6", olo4_6_radio_group_answer);
+                        answers.put("olo_4_7", olo4_7_radio_group_answer);
+                        answers.put("olo_4_7_1", null);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                     if (radioSelected.equals("Kyllä")) {
                         int radio_button_olo4_7_1 = olo4_7_1_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
@@ -262,7 +311,11 @@ public class olo extends Activity {
                         }
                         String olo4_7_1_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo4_7_1)).getText());
 
-                        answers.put("OLO4_1", olo4_7_1_radio_group_answer + ";");
+                        try {
+                            answers.put("olo_4_7_1", olo4_7_1_radio_group_answer);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     insert_db();
@@ -279,12 +332,20 @@ public class olo extends Activity {
     private void insert_db() {
         ContentValues context_data;
 
+        JSONObject packet = new JSONObject();
+        try {
+            packet.put("olo", 0);  // identifier and version id
+            packet.put("answers", answers);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         Log.d("Niels", "storing olo");
         context_data = new ContentValues();
         context_data.put(Provider.HYKS_data.TIMESTAMP, System.currentTimeMillis());
         context_data.put(Provider.HYKS_data.START_TIME, String.valueOf(start_time));
         context_data.put(Provider.HYKS_data.DEVICE_ID, Aware.getSetting(getApplicationContext(), Aware_Preferences.DEVICE_ID));
-        context_data.put(Provider.HYKS_data.ANSWER, String.valueOf(answers));
+        context_data.put(Provider.HYKS_data.ANSWER, packet.toString());
         getContentResolver().insert(Provider.HYKS_data.CONTENT_URI, context_data);
 
         // close application
