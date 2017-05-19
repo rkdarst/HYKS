@@ -46,35 +46,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="0" />
+                        android:text="@string/olo_4_1_1" />
 
                     <RadioButton
                         android:id="@+id/olo_4_1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="0,5-1" />
+                        android:text="@string/olo_4_1_2" />
 
                     <RadioButton
                         android:id="@+id/olo_4_1_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2-3" />
+                        android:text="@string/olo_4_1_3" />
 
                     <RadioButton
                         android:id="@+id/olo_4_1_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="4-5" />
+                        android:text="@string/olo_4_1_4" />
 
                     <RadioButton
                         android:id="@+id/olo_4_1_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="yli 5" />
+                        android:text="@string/olo_4_1_5" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -102,35 +102,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="0" />
+                        android:text="@string/olo_4_2_1" />
 
                     <RadioButton
                         android:id="@+id/olo_4_2_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="1-2" />
+                        android:text="@string/olo_4_2_2" />
 
                     <RadioButton
                         android:id="@+id/olo_4_2_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="3-4" />
+                        android:text="@string/olo_4_2_3" />
 
                     <RadioButton
                         android:id="@+id/olo_4_2_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="5-6" />
+                        android:text="@string/olo_4_2_4" />
 
                     <RadioButton
                         android:id="@+id/olo_4_2_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="yli 6" />
+                        android:text="@string/olo_4_2_5" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -158,28 +158,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="0" />
+                        android:text="@string/olo_4_3_1" />
 
                     <RadioButton
                         android:id="@+id/olo_4_3_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="1-2" />
+                        android:text="@string/olo_4_3_2" />
 
                     <RadioButton
                         android:id="@+id/olo_4_3_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="3-5" />
+                        android:text="@string/olo_4_3_3" />
 
                     <RadioButton
                         android:id="@+id/olo_4_3_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="yli 5" />
+                        android:text="@string/olo_4_3_4" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -351,21 +351,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="kevyt" />
+                        android:text="@string/olo_4_7_1_1" />
 
                     <RadioButton
                         android:id="@+id/olo_4_7_1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="keskiraskas" />
+                        android:text="@string/olo_4_7_1_2" />
 
                     <RadioButton
                         android:id="@+id/olo_4_7_1_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="raskas" />
+                        android:text="@string/olo_4_7_1_3" />
 
                 </RadioGroup>
             </LinearLayout>

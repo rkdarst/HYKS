@@ -103,14 +103,31 @@
     
     <string name="olo_4">Edellisen piippauksen jälkeen...</string>
     <string name="olo_4_1">Montako annosta kahvia tai muuta kofeiinipitoista juomaa olet juonut</string>
+    <string name="olo_4_1_1">0</string>
+    <string name="olo_4_1_2">0,5-1</string>
+    <string name="olo_4_1_3">2-3</string>
+    <string name="olo_4_1_4">4-5</string>
+    <string name="olo_4_1_5">yli 5</string>
     <string name="olo_4_2">Montako savuketta olet polttanut</string>
+    <string name="olo_4_2_1">0</string>
+    <string name="olo_4_2_2">1-2</string>
+    <string name="olo_4_2_3">3-4</string>
+    <string name="olo_4_2_4">5-6</string>
+    <string name="olo_4_2_5">yli 6</string>
     <string name="olo_4_3">Montako ravintola-annosta alkoholia olet juonut</string>
+    <string name="olo_4_3_1">0</string>
+    <string name="olo_4_3_2" />
+    <string name="olo_4_3_3">3-5</string>
+    <string name="olo_4_3_4">yli 5</string>
     <string name="olo_4_4">Oleko syönyt aterian</string>
     <string name="olo_4_5">Oletko syönyt välipalan</string>
     <string name="olo_4_6">Oletko harrastanut hyötyliikuntaa vähintään 10 min</string>
     <string name="olo_4_7">Oletko harrastanut kuntoliikuntaa vähintään 30min</string>
     <string name="olo_4_7_1">Kuinka raskasta kuntoliikuntaa harrastit</string>
     <string name="olo_4_7_2">Tämä piippaus häiritsi minua</string>
+    <string name="olo_4_7_1_1">kevyt</string>
+    <string name="olo_4_7_1_2">keskiraskas</string>
+    <string name="olo_4_7_1_3">raskas</string>
 
     <string name="title_activity_phq9">@string/app_name</string>
     <string name="phq9_notification_title">Kyselylomake odottaa vastaustasi</string>
