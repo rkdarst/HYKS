@@ -48,6 +48,8 @@
     <string name="olo_instructions">instructions</string>
     <string name="olo_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
+    <string name="olo_lickert_left">Ei</string>
+    <string name="olo_lickert_right">Kyllä</string>
     <string name="olo_1">Juuri nyt tunnen itseni.</string>
     <string name="olo_1_1">Juuri nyt tunnen itseni iloiseksi</string>
     <string name="olo_1_2">Juuri nyt tunnen itseni väsyneeksi</string>
