@@ -179,7 +179,8 @@ public class HYKS extends AppCompatActivity {
         String startHourStr = Aware.getSetting(getApplicationContext(), Settings.START_HOUR);
         String endHourStr   = Aware.getSetting(getApplicationContext(), Settings.END_HOUR);
         if (startHourStr.length() > 0)  startHour = Integer.parseInt(startHourStr);
-        if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr) - 1;
+        if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr);
+        endHour = endHour - 1;
 
         // Morning schedule
         try{
@@ -221,7 +222,7 @@ public class HYKS extends AppCompatActivity {
         int olo3_end   = endHour - 2;
         int olo2_start = (int) round( olo1_start + (olo3_end-olo1_start)/3.);
         int olo3_start = (int) round( olo1_start + 2*(olo3_end-olo1_start)/3.);
-        int olo1_end   = olo2_start-2;
+        int olo1_end   = olo2_start - 2;
         int olo2_end   = olo3_start - 2;
         try{
             Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
