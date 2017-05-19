@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:numStars="6"
+                    android:numStars="7"
                     android:stepSize="1" />
             </LinearLayout>
 
@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:numStars="6"
+                    android:numStars="7"
                     android:stepSize="1" />
             </LinearLayout>
 
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:numStars="6"
+                    android:numStars="7"
                     android:stepSize="1" />
             </LinearLayout>
 
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/olo_1_7" />
+                        android:text="@string/olo_2_4_7" />
 
                     <RadioButton
                         android:id="@+id/olo_2_4_8"
