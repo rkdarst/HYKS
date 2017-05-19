@@ -30,6 +30,14 @@ public class olo extends Activity {
     //HashMap<String, String> answers = new HashMap<>();
     JSONObject answers = new JSONObject();
 
+    static void lickert_answer(JSONObject a, String key, float ans) throws JSONException {
+        if (ans == 0) {
+            a.put(key, JSONObject.NULL);
+            return;
+        }
+        a.put(key, ans-1);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,14 +75,14 @@ public class olo extends Activity {
                     // put answer to var
                     try {
                         JSONArray olo1 = new JSONArray();
-                        answers.put("olo_1_1", rb_olo_1_1.getRating());
-                        answers.put("olo_1_2", rb_olo_1_2.getRating());
-                        answers.put("olo_1_3", rb_olo_1_3.getRating());
-                        answers.put("olo_1_4", rb_olo_1_4.getRating());
-                        answers.put("olo_1_5", rb_olo_1_5.getRating());
-                        answers.put("olo_1_6", rb_olo_1_6.getRating());
-                        answers.put("olo_1_7", rb_olo_1_7.getRating());
-                        answers.put("olo_1_8", rb_olo_1_8.getRating());
+                        lickert_answer(answers, "olo_1_1", rb_olo_1_1.getRating());
+                        lickert_answer(answers, "olo_1_2", rb_olo_1_2.getRating());
+                        lickert_answer(answers, "olo_1_3", rb_olo_1_3.getRating());
+                        lickert_answer(answers, "olo_1_4", rb_olo_1_4.getRating());
+                        lickert_answer(answers, "olo_1_5", rb_olo_1_5.getRating());
+                        lickert_answer(answers, "olo_1_6", rb_olo_1_6.getRating());
+                        lickert_answer(answers, "olo_1_7", rb_olo_1_7.getRating());
+                        lickert_answer(answers, "olo_1_8", rb_olo_1_8.getRating());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
