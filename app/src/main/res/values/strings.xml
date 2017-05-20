@@ -76,6 +76,8 @@
 
     <string name="olo_3">Mieti tärkeintä tapahtumaa edellisen piippauksen jälkeen</string>
     <string name="olo_3_1">Kuinka miellyttävä tapahtuma oli</string>
+    <string name="olo_3_1_left">:( Epämiellyttävinä</string>
+    <string name="olo_3_1_right">:) Miellyttävinä</string>
     <string name="olo_3_2">Mihin tärkein tapahtuma liittyi</string>
     <string name="olo_3_2_1">työ/opiskelu</string>
     <string name="olo_3_2_2">fyysinen aktiviteetti</string>
