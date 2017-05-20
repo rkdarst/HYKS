@@ -172,6 +172,7 @@ public class HYKS extends AppCompatActivity {
     }
 
     private void setSchedule() {
+        Context context = getApplicationContext();
 
         // TODO: make these hours configurable
         int startHour = getResources().getInteger(R.integer.default_start_time);
@@ -180,15 +181,17 @@ public class HYKS extends AppCompatActivity {
         String endHourStr   = Aware.getSetting(getApplicationContext(), Settings.END_HOUR);
         if (startHourStr.length() > 0)  startHour = Integer.parseInt(startHourStr);
         if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr);
+        // Adjust end hour.  If stop time is 20:00, the last full hour is 19, etc.
         endHour = endHour - 1;
 
         // Morning schedule
-        try{
+        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
+        try {
             Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
             schedule_morning
+                    .random(1, 30)
                     .addHour(startHour)
-                    .addHour(startHour + 2)
-                    .setInterval(60)
+                    .addHour(startHour+1)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_MORNING_TRIGGERED");
 
@@ -198,11 +201,13 @@ public class HYKS extends AppCompatActivity {
         }
 
         // Evening schedule
-        try{
+        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_evening%'", null);
+        try {
             Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
             schedule_evening
+                    .random(1, 30)
+                    .addHour(endHour-1)
                     .addHour(endHour)
-                    .setInterval(60)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_EVENING_TRIGGERED");
 
@@ -211,20 +216,25 @@ public class HYKS extends AppCompatActivity {
             e.printStackTrace();
         }
 
+//        try {
+//            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo_fixed");
+//            schedule_random1.setInterval(1).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+//            Scheduler.saveSchedule(this, schedule_random1);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
         // Random schedule
         // Delete already existing random schedules
-        Context context = getApplicationContext();
         context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
-        // This second one is for backwards compatibility.
-        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_random%'", null);
         // Set new schedule
         int olo1_start = startHour + 2;
         int olo3_end   = endHour - 2;
-        int olo2_start = (int) round( olo1_start + (olo3_end-olo1_start)/3.);
-        int olo3_start = (int) round( olo1_start + 2*(olo3_end-olo1_start)/3.);
-        int olo1_end   = olo2_start - 2;
-        int olo2_end   = olo3_start - 2;
-        try{
+        int olo2_start = (int) round(olo1_start + (olo3_end-olo1_start)/3.);
+        int olo3_start = (int) round(olo1_start + 2*(olo3_end-olo1_start)/3.);
+        int olo1_end   = olo2_start - 1;
+        int olo2_end   = olo3_start - 1;
+        try {
             Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
             Scheduler.Schedule schedule_random2 = new Scheduler.Schedule("schedule_olo2");
             Scheduler.Schedule schedule_random3 = new Scheduler.Schedule("schedule_olo3");
