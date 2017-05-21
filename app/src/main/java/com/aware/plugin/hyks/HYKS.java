@@ -90,7 +90,7 @@ public class HYKS extends AppCompatActivity {
                     EditText edittext_study_url = (EditText) findViewById(R.id.edittext_study_url);
                     String url = String.valueOf(edittext_study_url.getText());
                     if (url.length() < 20) {
-                        if (!url.matches("[0-9a-f]{16}")) {
+                        if (!url.matches("[0-9a-fA-F]{16}")) {
                             Toast toast = Toast.makeText(getApplicationContext(),
                                     R.string.core_secret_id_error,
                                     Toast.LENGTH_LONG);
@@ -165,6 +165,12 @@ public class HYKS extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+    }
+
     private void setSchedule() {
 
         // TODO: make these hours configurable
@@ -173,7 +179,8 @@ public class HYKS extends AppCompatActivity {
         String startHourStr = Aware.getSetting(getApplicationContext(), Settings.START_HOUR);
         String endHourStr   = Aware.getSetting(getApplicationContext(), Settings.END_HOUR);
         if (startHourStr.length() > 0)  startHour = Integer.parseInt(startHourStr);
-        if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr) - 1;
+        if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr);
+        endHour = endHour - 1;
 
         // Morning schedule
         try{
@@ -215,7 +222,7 @@ public class HYKS extends AppCompatActivity {
         int olo3_end   = endHour - 2;
         int olo2_start = (int) round( olo1_start + (olo3_end-olo1_start)/3.);
         int olo3_start = (int) round( olo1_start + 2*(olo3_end-olo1_start)/3.);
-        int olo1_end   = olo2_start-2;
+        int olo1_end   = olo2_start - 2;
         int olo2_end   = olo3_start - 2;
         try{
             Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
@@ -235,9 +242,12 @@ public class HYKS extends AppCompatActivity {
         try{
             Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
             schedule_biweekly
-                    .setInterval(20160)
+                    .setInterval(40320)
                     .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                     .setActionIntentAction("ESM_PHQ_TRIGGERED");
+            for (int hour=startHour ; hour <= endHour ; hour++) {
+                schedule_biweekly.addHour(hour);
+            }
 
             Scheduler.saveSchedule(this, schedule_biweekly);
         } catch (JSONException e) {

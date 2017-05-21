@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">HYKS</string>
-    <string name="title_activity_hyks">HYKS</string>
+    <string name="app_name">MoMoMood Pilot</string>
+    <string name="title_activity_hyks">MoMoMood Pilot</string>
 
     <string name="core_syncing_data">Syncing data...</string>
     <string name="core_starting_schedule">Starting schedule</string>
@@ -44,19 +44,21 @@
     <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
     <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
 
-    <string name="title_activity_olo">HYKS</string>
+    <string name="title_activity_olo">@string/app_name</string>
     <string name="olo_instructions">instructions</string>
     <string name="olo_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
+    <string name="olo_lickert_left">Ei</string>
+    <string name="olo_lickert_right">Kyllä</string>
     <string name="olo_1">Juuri nyt tunnen itseni.</string>
-    <string name="olo_1_1">iloiseksi</string>
-    <string name="olo_1_2">väsyneeksi</string>
-    <string name="olo_1_3">tyytyväiseksi</string>
-    <string name="olo_1_4">hermostuneeksi</string>
-    <string name="olo_1_5">rauhalliseksi</string>
-    <string name="olo_1_6">surulliseksi</string>
-    <string name="olo_1_7">innostuneeksi</string>
-    <string name="olo_1_8">aktiiviseksi</string>
+    <string name="olo_1_1">Juuri nyt tunnen itseni iloiseksi</string>
+    <string name="olo_1_2">Juuri nyt tunnen itseni väsyneeksi</string>
+    <string name="olo_1_3">Juuri nyt tunnen itseni tyytyväiseksi</string>
+    <string name="olo_1_4">Juuri nyt tunnen itseni hermostuneeksi</string>
+    <string name="olo_1_5">Juuri nyt tunnen itseni rauhalliseksi</string>
+    <string name="olo_1_6">Juuri nyt tunnen itseni surulliseksi</string>
+    <string name="olo_1_7">Juuri nyt tunnen itseni innostuneeksi</string>
+    <string name="olo_1_8">Juuri nyt tunnen itseni aktiiviseksi</string>
 
     <string name="olo_2">Mieti, mitä olit tekemässä juuri ennen piippausta</string>
     <string name="olo_2_1">Nautin tästä tekemisestä</string>
@@ -85,7 +87,7 @@
     <string name="olo_3_2_8">muu</string>
     <string name="olo_3_3">Juuri nyt olen yksin</string>
     <string name="olo_3_3_1">Kyllä</string>
-    <string name="olo_3_3_2">Ei</string>
+    <string name="olo_3_3_2">En</string>
     
     <string name="olo_3_3_1_1">Mieti, kenen kanssa olet juuri nyt</string>
     <string name="olo_3_3_1_2">Koen nämä ihmiset miellyttävinä</string>
@@ -103,16 +105,33 @@
     
     <string name="olo_4">Edellisen piippauksen jälkeen...</string>
     <string name="olo_4_1">Montako annosta kahvia tai muuta kofeiinipitoista juomaa olet juonut</string>
+    <string name="olo_4_1_1">0</string>
+    <string name="olo_4_1_2">0,5-1</string>
+    <string name="olo_4_1_3">2-3</string>
+    <string name="olo_4_1_4">4-5</string>
+    <string name="olo_4_1_5">yli 5</string>
     <string name="olo_4_2">Montako savuketta olet polttanut</string>
+    <string name="olo_4_2_1">0</string>
+    <string name="olo_4_2_2">1-2</string>
+    <string name="olo_4_2_3">3-4</string>
+    <string name="olo_4_2_4">5-6</string>
+    <string name="olo_4_2_5">yli 6</string>
     <string name="olo_4_3">Montako ravintola-annosta alkoholia olet juonut</string>
+    <string name="olo_4_3_1">0</string>
+    <string name="olo_4_3_2" />
+    <string name="olo_4_3_3">3-5</string>
+    <string name="olo_4_3_4">yli 5</string>
     <string name="olo_4_4">Oleko syönyt aterian</string>
     <string name="olo_4_5">Oletko syönyt välipalan</string>
     <string name="olo_4_6">Oletko harrastanut hyötyliikuntaa vähintään 10 min</string>
     <string name="olo_4_7">Oletko harrastanut kuntoliikuntaa vähintään 30min</string>
     <string name="olo_4_7_1">Kuinka raskasta kuntoliikuntaa harrastit</string>
     <string name="olo_4_7_2">Tämä piippaus häiritsi minua</string>
+    <string name="olo_4_7_1_1">kevyt</string>
+    <string name="olo_4_7_1_2">keskiraskas</string>
+    <string name="olo_4_7_1_3">raskas</string>
 
-    <string name="title_activity_phq9">HYKS</string>
+    <string name="title_activity_phq9">@string/app_name</string>
     <string name="phq9_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="phq9_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>

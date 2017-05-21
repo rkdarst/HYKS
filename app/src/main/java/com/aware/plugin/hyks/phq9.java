@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +28,7 @@ import static com.aware.Aware.TAG;
 public class phq9 extends Activity {
 
     long start_time;
-    String answers;
+    JSONObject answers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,16 +84,20 @@ public class phq9 extends Activity {
                     String radio_button_9_answer = String.valueOf(((RadioButton) findViewById(radio_button_9)).getText());
 
                     // put answer to var
-                    answers = "";
-                    answers = answers.concat("PHQ1" + radio_button_1_answer + ";");
-                    answers = answers.concat("PHQ2" + radio_button_2_answer + ";");
-                    answers = answers.concat("PHQ3" + radio_button_3_answer + ";");
-                    answers = answers.concat("PHQ4" + radio_button_4_answer + ";");
-                    answers = answers.concat("PHQ5" + radio_button_5_answer + ";");
-                    answers = answers.concat("PHQ6" + radio_button_6_answer + ";");
-                    answers = answers.concat("PHQ7" + radio_button_7_answer + ";");
-                    answers = answers.concat("PHQ8" + radio_button_8_answer + ";");
-                    answers = answers.concat("PHQ9" + radio_button_9_answer + ";");
+                    answers = new JSONObject();
+                    try {
+                        answers.put("PHQ1", radio_button_1_answer);
+                        answers.put("PHQ2", radio_button_2_answer);
+                        answers.put("PHQ3", radio_button_3_answer);
+                        answers.put("PHQ4", radio_button_4_answer);
+                        answers.put("PHQ5", radio_button_5_answer);
+                        answers.put("PHQ6", radio_button_6_answer);
+                        answers.put("PHQ7", radio_button_7_answer);
+                        answers.put("PHQ8", radio_button_8_answer);
+                        answers.put("PHQ9", radio_button_9_answer);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                     insert_db();
                 } else {
@@ -109,7 +116,7 @@ public class phq9 extends Activity {
         context_data.put(Provider.HYKS_data.TIMESTAMP, System.currentTimeMillis());
         context_data.put(Provider.HYKS_data.START_TIME, String.valueOf(start_time));
         context_data.put(Provider.HYKS_data.DEVICE_ID, Aware.getSetting(getApplicationContext(), Aware_Preferences.DEVICE_ID));
-        context_data.put(Provider.HYKS_data.ANSWER, answers);
+        context_data.put(Provider.HYKS_data.ANSWER, answers.toString());
         getContentResolver().insert(Provider.HYKS_data.CONTENT_URI, context_data);
 
         // close application

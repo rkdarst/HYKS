@@ -35,69 +35,423 @@
                     android:text="@string/olo_1"
                     android:textAppearance="@android:style/TextAppearance.Medium" />
 
-                <RadioGroup
-                    android:id="@+id/olo1_radio_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/olo_1_1"
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_1"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_1" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_2"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_2"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_2" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_3"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_3"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_3" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_4"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_4"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_4" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_5"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_5"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_5" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_6"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_6"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_6" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_7"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_7"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_7" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                    <RadioButton
-                        android:id="@+id/olo_1_8"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:text="@string/olo_1_8"
+                        android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                    <RatingBar
+                        android:id="@+id/rb_olo_1_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/olo_1_8" />
+                        android:layout_gravity="center_horizontal"
+                        android:numStars="7"
+                        android:stepSize="1" />
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:paddingBottom="2dp"
+                            android:paddingLeft="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_left"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:paddingBottom="2dp"
+                            android:paddingRight="12dp"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="@string/olo_lickert_right"/>
+                    </LinearLayout>
+                </LinearLayout>
 
-                </RadioGroup>
+
+
+                <!--<RadioGroup-->
+                    <!--android:id="@+id/olo1_radio_group"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center_horizontal">-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_1"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_1" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_2"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_2" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_3"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_3" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_4"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_4" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_5"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_5" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_6"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_6" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_7"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_7" />-->
+
+                    <!--<RadioButton-->
+                        <!--android:id="@+id/olo_1_8"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="@string/olo_1_8" />-->
+
+                <!--</RadioGroup>-->
             </LinearLayout>
 
         </LinearLayout>
