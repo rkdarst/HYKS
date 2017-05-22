@@ -2,6 +2,7 @@
     <string name="app_name">MoMoMood Pilot</string>
     <string name="title_activity_hyks">MoMoMood Pilot</string>
 
+    <string name="secret_id_hint_text">device secret id</string>
     <string name="core_syncing_data">Syncing data...</string>
     <string name="core_starting_schedule">Starting schedule</string>
     <string name="core_thanks_for_joining">Thanks for joining!</string>

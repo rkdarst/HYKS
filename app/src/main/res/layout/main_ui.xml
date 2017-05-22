@@ -30,7 +30,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NNNNNNNNNNNNNNNN"
+        android:hint="@string/secret_id_hint_text"
         android:ems="10"
         android:id="@+id/edittext_study_url"
         android:inputType="textUri" />
