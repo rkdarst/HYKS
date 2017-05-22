@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_TTS;
 import com.aware.utils.Scheduler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -171,6 +173,50 @@ public class HYKS extends AppCompatActivity {
         sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
     }
 
+    static int jsonMin(JSONArray array) {
+        int min = -1;
+            for (int i = 0; i < array.length(); i++) {
+                try {
+                    min = Math.min(min, array.getInt(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        return min;
+    }
+    static int jsonMax(JSONArray array) {
+        int max = 99;
+        for (int i = 0; i < array.length(); i++) {
+            try {
+                max = Math.max(max, array.getInt(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return max;
+    }
+
+    /*
+     * Compare a schedule to the expected parameters.  If it is not set up correctly, return false.
+     * This is used to check if a schedule needs recreating.
+     */
+    static boolean isScheduleCorrect(Context context, String schedule_id, Integer startHour, Integer endHour) {
+        try {
+            Scheduler.Schedule schedule = Scheduler.getSchedule(context, schedule_id);
+            if (schedule == null
+                    || (startHour != null && jsonMin(schedule.getHours()) != startHour)
+                    || (endHour   != null && jsonMax(schedule.getHours()) != endHour)
+                    ) {
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
     private void setSchedule() {
         Context context = getApplicationContext();
 
@@ -185,19 +231,27 @@ public class HYKS extends AppCompatActivity {
         endHour = endHour - 1;
 
         // Morning schedule
-        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
-        try {
-            Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
-            schedule_morning
-                    .random(1, 30)
-                    .addHour(startHour)
-                    .addHour(startHour+1)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_MORNING_TRIGGERED");
+        if (Aware.getSetting(getApplicationContext(), Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
+            Log.d("HYKS", "Morning schedule: Deleting");
+        }
+        if (! Aware.getSetting(getApplicationContext(), Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_morning%", startHour, startHour+1)) {
+            Log.d("HYKS", "Morning schedule: Deleting and setting");
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
+            try {
+                Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
+                schedule_morning
+                        .random(1, 30)
+                        .addHour(startHour)
+                        .addHour(startHour + 1)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("ESM_MORNING_TRIGGERED");
+                Scheduler.saveSchedule(this, schedule_morning);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-            Scheduler.saveSchedule(this, schedule_morning);
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
 
         // Evening schedule

@@ -30,6 +30,15 @@
             android:exported="true" />
 
         <receiver
+            android:name=".HYKS$HYKS_Settings_Runner"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="HYKS_SETTINGS_RUNNER" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
             android:name=".ESM_Morning_Questionnaire"
             android:enabled="true"
             android:exported="true">
