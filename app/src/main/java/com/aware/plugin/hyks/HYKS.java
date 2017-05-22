@@ -3,6 +3,7 @@ package com.aware.plugin.hyks;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,6 +38,7 @@ import static java.lang.Math.round;
 public class HYKS extends AppCompatActivity {
 
     private TextView device_id;
+    private TextView version_id;
     private Button join_study, set_settings, sync_data, set_schedule;
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
@@ -73,6 +75,17 @@ public class HYKS extends AppCompatActivity {
 
             device_id = (TextView) findViewById(R.id.device_id);
             device_id.setText("UUID: " + Aware.getSetting(this, Aware_Preferences.DEVICE_ID));
+
+            String version = "";
+            PackageInfo pInfo;
+            try {
+                pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                version = pInfo.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            version_id = (TextView) findViewById(R.id.version_id);
+            version_id.setText("app version: " + version);
 
             set_settings = (Button) findViewById(R.id.set_settings);
             set_settings.setOnClickListener(new View.OnClickListener() {

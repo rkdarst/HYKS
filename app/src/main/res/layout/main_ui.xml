@@ -53,4 +53,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_set_schedule" />
+
+    <TextView
+        android:id="@+id/version_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="version:"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
 </LinearLayout>
