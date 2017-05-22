@@ -306,28 +306,39 @@ public class HYKS extends AppCompatActivity {
                         .addHour(startHour + 1)
                         .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
                         .setActionIntentAction("ESM_MORNING_TRIGGERED");
-                Scheduler.saveSchedule(this, schedule_morning);
+                Scheduler.saveSchedule(context, schedule_morning);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
+
+
 
         // Evening schedule
-        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_evening%'", null);
-        try {
-            Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
-            schedule_evening
-                    .random(1, 30)
-                    .addHour(endHour-1)
-                    .addHour(endHour)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_EVENING_TRIGGERED");
-
-            Scheduler.saveSchedule(this, schedule_evening);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_evening%'", null);
+            Log.d("HYKS", "Evening schedule: Deleting");
         }
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_evening%", endHour-1, endHour)) {
+            Log.d("HYKS", "Evening schedule: Deleting and setting");
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_evening%'", null);
+            try {
+                Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
+                schedule_evening
+                        .random(1, 30)
+                        .addHour(endHour-1)
+                        .addHour(endHour)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("ESM_EVENING_TRIGGERED");
+
+                Scheduler.saveSchedule(context, schedule_evening);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
 //        try {
 //            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo_fixed");
@@ -337,44 +348,63 @@ public class HYKS extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 
+
+
         // Random schedule
-        // Delete already existing random schedules
-        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
-        // Set new schedule
         int olo1_start = startHour + 2;
-        int olo3_end   = endHour - 2;
-        int olo2_start = (int) round(olo1_start + (olo3_end-olo1_start)/3.);
-        int olo3_start = (int) round(olo1_start + 2*(olo3_end-olo1_start)/3.);
-        int olo1_end   = olo2_start - 1;
-        int olo2_end   = olo3_start - 1;
-        try {
-            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
-            Scheduler.Schedule schedule_random2 = new Scheduler.Schedule("schedule_olo2");
-            Scheduler.Schedule schedule_random3 = new Scheduler.Schedule("schedule_olo3");
-            schedule_random1.random(1, 30).addHour(olo1_start).addHour(olo1_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-            schedule_random2.random(1, 30).addHour(olo2_start).addHour(olo2_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-            schedule_random3.random(1, 30).addHour(olo3_start).addHour(olo3_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-            Scheduler.saveSchedule(this, schedule_random1);
-            Scheduler.saveSchedule(this, schedule_random2);
-            Scheduler.saveSchedule(this, schedule_random3);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        int olo3_end = endHour - 2;
+        int olo2_start = (int) round(olo1_start + (olo3_end - olo1_start) / 3.);
+        int olo3_start = (int) round(olo1_start + 2 * (olo3_end - olo1_start) / 3.);
+        int olo1_end = olo2_start - 1;
+        int olo2_end = olo3_start - 1;
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
+            Log.d("HYKS", "Olo schedules: Deleting");
+        }
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_olo1%", olo1_start, olo1_end)) {
+            Log.d("HYKS", "Olo schedules: Deleting and setting");
+            // Delete already existing random schedules
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
+            // Set new schedule
+            try {
+                Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
+                Scheduler.Schedule schedule_random2 = new Scheduler.Schedule("schedule_olo2");
+                Scheduler.Schedule schedule_random3 = new Scheduler.Schedule("schedule_olo3");
+                schedule_random1.random(1, 30).addHour(olo1_start).addHour(olo1_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+                schedule_random2.random(1, 30).addHour(olo2_start).addHour(olo2_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+                schedule_random3.random(1, 30).addHour(olo3_start).addHour(olo3_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+                Scheduler.saveSchedule(context, schedule_random1);
+                Scheduler.saveSchedule(context, schedule_random2);
+                Scheduler.saveSchedule(context, schedule_random3);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
-        // PHQ9 schedule
-        try{
-            Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
-            schedule_biweekly
-                    .setInterval(40320)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_PHQ_TRIGGERED");
-            for (int hour=startHour ; hour <= endHour ; hour++) {
-                schedule_biweekly.addHour(hour);
-            }
 
-            Scheduler.saveSchedule(this, schedule_biweekly);
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        // PHQ9 schedule
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_biweekly%'", null);
+            Log.d("HYKS", "Biweekly schedules: Deleting");
+        }
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_biweekly%", startHour, endHour)) {
+            Log.d("HYKS", "Biweekly schedule: Deleting and setting");
+            try {
+                Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
+                schedule_biweekly
+                        .setInterval(40320)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("ESM_PHQ_TRIGGERED");
+                for (int hour = startHour; hour <= endHour; hour++) {
+                    schedule_biweekly.addHour(hour);
+                }
+                Scheduler.saveSchedule(context, schedule_biweekly);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
