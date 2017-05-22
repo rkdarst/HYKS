@@ -37,15 +37,20 @@ import static java.lang.Math.round;
 
 public class HYKS extends AppCompatActivity {
 
+    static Context appContext;
+
     private TextView device_id;
     private TextView version_id;
     private Button join_study, set_settings, sync_data, set_schedule;
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
 
+    static String SERVICE_SETTINGS_RUNNER = "HYKS_SETTINGS_RUNNER";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appContext = getApplicationContext();
 
         setContentView(R.layout.main_ui);
 
@@ -174,7 +179,7 @@ public class HYKS extends AppCompatActivity {
             set_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    setSchedule();
+                    setSchedule(appContext);
                     Toast.makeText(getApplicationContext(), R.string.core_starting_schedule, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -234,29 +239,39 @@ public class HYKS extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d("HYKS", "schedule runner: received intent");
-            if (!intent.getAction().equals("HYKS_SETTINGS_RUNNER")) {
+            if (!intent.getAction().equals(HYKS.SERVICE_SETTINGS_RUNNER)) {
                 return;
             }
             Log.d("HYKS", "schedule runner: running");
             // The following doesn't work because this is a static context and setSchedule is non-static.
             //setSchedule();
+            setSchedule(HYKS.appContext);
         }
     }
 
-    private void setSchedule() {
-        Context context = getApplicationContext();
+    /**
+     * This is an idempotent method which processes current schedule data.
+     *
+     * @param context the app context
+     */
+    private static void setSchedule(Context context) {
+        Log.d("HYKS", "setSchedule: running");
+        //Context context = getApplicationContext();
+        //Context context = HYKS.appContext;
+        //Context context = getApplication().getApplicationContext();
 
         // TODO: make these hours configurable
-        int startHour = getResources().getInteger(R.integer.default_start_time);
-        int endHour   = getResources().getInteger(R.integer.default_end_time);
-        String startHourStr = Aware.getSetting(getApplicationContext(), Settings.START_HOUR);
-        String endHourStr   = Aware.getSetting(getApplicationContext(), Settings.END_HOUR);
+        int startHour = context.getResources().getInteger(R.integer.default_start_time);
+        int endHour   = context.getResources().getInteger(R.integer.default_end_time);
+        String startHourStr = Aware.getSetting(context, Settings.START_HOUR);
+        String endHourStr   = Aware.getSetting(context, Settings.END_HOUR);
         if (startHourStr.length() > 0)  startHour = Integer.parseInt(startHourStr);
         if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr);
         // Adjust end hour.  If stop time is 20:00, the last full hour is 19, etc.
         endHour = endHour - 1;
 
 
+        // Background schedule checker
         Scheduler.Schedule schedule_runner = Scheduler.getSchedule(context, "schedule_settings");
         if (schedule_runner == null) {
             Log.d("HYKS", "setting schedule runner");
@@ -265,7 +280,7 @@ public class HYKS extends AppCompatActivity {
                 schedule_runner
                         .setInterval(1)
                         .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                        .setActionIntentAction("HYKS_SETTINGS_RUNNER");
+                        .setActionIntentAction(HYKS.SERVICE_SETTINGS_RUNNER);
                 Scheduler.saveSchedule(context, schedule_runner);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -273,12 +288,13 @@ public class HYKS extends AppCompatActivity {
         }
 
 
+
         // Morning schedule
-        if (Aware.getSetting(getApplicationContext(), Settings.DAILY_QUESTIONS).equals("false")) {
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
             context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
             Log.d("HYKS", "Morning schedule: Deleting");
         }
-        if (! Aware.getSetting(getApplicationContext(), Settings.DAILY_QUESTIONS).equals("false")
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
                 && ! isScheduleCorrect(context, "schedule_morning%", startHour, startHour+1)) {
             Log.d("HYKS", "Morning schedule: Deleting and setting");
             context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
