@@ -1,5 +1,6 @@
 package com.aware.plugin.hyks;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -216,6 +217,18 @@ public class HYKS extends AppCompatActivity {
         return true;
     }
 
+    public static class HYKS_Settings_Runner extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("HYKS", "schedule runner: received intent");
+            if (!intent.getAction().equals("HYKS_SETTINGS_RUNNER")) {
+                return;
+            }
+            Log.d("HYKS", "schedule runner: running");
+            // The following doesn't work because this is a static context and setSchedule is non-static.
+            //setSchedule();
+        }
+    }
 
     private void setSchedule() {
         Context context = getApplicationContext();
@@ -229,6 +242,23 @@ public class HYKS extends AppCompatActivity {
         if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr);
         // Adjust end hour.  If stop time is 20:00, the last full hour is 19, etc.
         endHour = endHour - 1;
+
+
+        Scheduler.Schedule schedule_runner = Scheduler.getSchedule(context, "schedule_settings");
+        if (schedule_runner == null) {
+            Log.d("HYKS", "setting schedule runner");
+            try {
+                schedule_runner = new Scheduler.Schedule("schedule_settings");
+                schedule_runner
+                        .setInterval(1)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("HYKS_SETTINGS_RUNNER");
+                Scheduler.saveSchedule(context, schedule_runner);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         // Morning schedule
         if (Aware.getSetting(getApplicationContext(), Settings.DAILY_QUESTIONS).equals("false")) {
