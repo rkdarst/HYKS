@@ -245,7 +245,11 @@ public class HYKS extends AppCompatActivity {
             Log.d("HYKS", "schedule runner: running");
             // The following doesn't work because this is a static context and setSchedule is non-static.
             //setSchedule();
-            setSchedule(HYKS.appContext);
+            if (HYKS.appContext != null) {
+                setSchedule(HYKS.appContext);
+            } else {
+                Log.e("HYKS", "HYKS_Settings_Runner was called and appContext was null.  Aborting.");
+            }
         }
     }
 
@@ -255,6 +259,10 @@ public class HYKS extends AppCompatActivity {
      * @param context the app context
      */
     private static void setSchedule(Context context) {
+        if (context == null) {
+            Log.e("HYKS", "setSchedule called with null context");
+            return;
+        }
         Log.d("HYKS", "setSchedule: running");
         //Context context = getApplicationContext();
         //Context context = HYKS.appContext;
