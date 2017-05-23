@@ -193,7 +193,7 @@ public class HYKS extends AppCompatActivity {
     }
 
     static int jsonMin(JSONArray array) {
-        int min = -1;
+        int min = 99;
             for (int i = 0; i < array.length(); i++) {
                 try {
                     min = Math.min(min, array.getInt(i));
@@ -204,7 +204,7 @@ public class HYKS extends AppCompatActivity {
         return min;
     }
     static int jsonMax(JSONArray array) {
-        int max = 99;
+        int max = -1;
         for (int i = 0; i < array.length(); i++) {
             try {
                 max = Math.max(max, array.getInt(i));
