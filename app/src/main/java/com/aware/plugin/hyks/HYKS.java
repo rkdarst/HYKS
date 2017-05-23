@@ -130,6 +130,7 @@ public class HYKS extends AppCompatActivity {
                     Aware.joinStudy(getApplicationContext(), url);
 
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_ESM, true);
+                    //Aware.setSetting(getApplicationContext(), Aware_Preferences.WEBSERVICE_WIFI_ONLY, true);
 
                     // Probes
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_BATTERY, true);
