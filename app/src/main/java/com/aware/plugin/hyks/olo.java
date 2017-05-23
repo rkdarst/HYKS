@@ -258,12 +258,12 @@ public class olo extends Activity {
 
                 if (checkedId == R.id.olo_4_7_1) { //(radioSelected.equals("Kyllä")) {
                     // Show ll_olo_4_a
-                    olo4_7_1_radio_group.setVisibility(View.VISIBLE);
+                    ll_olo_4_a.setVisibility(View.VISIBLE);
                 } else if (checkedId == R.id.olo_4_7_2) { //(radioSelected.equals("Ei")) {
                     // Hide ll_olo_4_a
-                    olo4_7_1_radio_group.setVisibility(View.GONE);
+                    ll_olo_4_a.setVisibility(View.GONE);
                 } else {
-                    olo4_7_1_radio_group.setVisibility(View.GONE);
+                    ll_olo_4_a.setVisibility(View.GONE);
                 }
             }
         });
