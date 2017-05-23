@@ -57,6 +57,7 @@ public class HYKS extends AppCompatActivity {
         //Intent aware = new Intent(this, Aware.class);
         //startService(aware);
         sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+        Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
 
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
@@ -428,6 +429,7 @@ public class HYKS extends AppCompatActivity {
         } else {
             sync_data.setVisibility(View.INVISIBLE);
         }
+        Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
     }
 
     /*
