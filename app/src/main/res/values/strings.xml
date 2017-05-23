@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoMoMood Pilot</string>
+    <string name="app_name">Mobiiliapplikaatiotutkimus</string>
     <string name="title_activity_hyks">MoMoMood Pilot</string>
 
     <string name="secret_id_hint_text">device secret id</string>
