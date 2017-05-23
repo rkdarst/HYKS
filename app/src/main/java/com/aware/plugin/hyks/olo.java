@@ -158,11 +158,11 @@ public class olo extends Activity {
 
                 String radioSelected = String.valueOf(radioButton.getText());
 
-                if (radioSelected.equals("Kyllä")) {
+                if (checkedId == R.id.olo_3_3_1) { //(radioSelected.equals("Kyllä")) {
                     // Show Olo_3_3_2_1
                     ll_olo_3_a.setVisibility(View.GONE);
                     ll_olo_3_b.setVisibility(View.VISIBLE);
-                } else if (radioSelected.equals("Ei")) {
+                } else if (checkedId == R.id.olo_3_3_2) { //(radioSelected.equals("Ei")) {
                     // Show Olo_3_3_1_1 - Olo_3_3_1_5
                     ll_olo_3_a.setVisibility(View.VISIBLE);
                     ll_olo_3_b.setVisibility(View.GONE);
@@ -207,10 +207,10 @@ public class olo extends Activity {
                         answers.put("olo_3_1_5", null);
                         answers.put("olo_3_3_1_2", null);
                         answers.put("olo_3_3_1_4", null);
-                        if (radioSelected.equals("Kyllä")) {
+                        if (radioSelected.equals(getResources().getString(R.string.olo_3_3_1))) { //(radioSelected.equals("Kyllä")) {
                             float v3_3_2_1_answer = rb_olo_3_3_2_1.getRating();
                             answers.put("olo_3_3_2_1", v3_3_2_1_answer);
-                        } else if (radioSelected.equals("Ei")) {
+                        } else if (radioSelected.equals(getResources().getString(R.string.olo_3_3_2))) {
                             float v3_3_1_3_answer = rb_olo_3_3_1_3.getRating();
                             String olo3_1_5_radio_group_answer = String.valueOf(((RadioButton) findViewById(radio_button_olo3_1_5)).getText());
                             float v3_3_1_2_answer = rb_olo_3_3_1_2.getRating();
@@ -256,15 +256,14 @@ public class olo extends Activity {
 
                 String radioSelected = String.valueOf(radioButton.getText());
 
-                if (radioSelected.equals("Kyllä")) {
+                if (checkedId == R.id.olo_4_7_1) { //(radioSelected.equals("Kyllä")) {
                     // Show ll_olo_4_a
-                    ll_olo_4_a.setVisibility(View.VISIBLE);
-                } else if (radioSelected.equals("Ei")) {
+                    olo4_7_1_radio_group.setVisibility(View.VISIBLE);
+                } else if (checkedId == R.id.olo_4_7_2) { //(radioSelected.equals("Ei")) {
                     // Hide ll_olo_4_a
-                    ll_olo_4_a.setVisibility(View.GONE);
-                }
-                else {
-                    ll_olo_4_a.setVisibility(View.GONE);
+                    olo4_7_1_radio_group.setVisibility(View.GONE);
+                } else {
+                    olo4_7_1_radio_group.setVisibility(View.GONE);
                 }
             }
         });
@@ -310,7 +309,7 @@ public class olo extends Activity {
                         e.printStackTrace();
                     }
 
-                    if (radioSelected.equals("Kyllä")) {
+                    if (radioSelected.equals(getResources().getString(R.string.olo_3_3_1))) {
                         int radio_button_olo4_7_1 = olo4_7_1_radio_group.getCheckedRadioButtonId(); //if -1, no radio button was checked
                         if (radio_button_olo4_7_1 == -1) {
                             Toast toast = Toast.makeText(getApplicationContext(), getString(R.string.warning_missing_answer), Toast.LENGTH_SHORT);
