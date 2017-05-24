@@ -328,9 +328,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_olo_4_a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -371,12 +374,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/ll_olo_4_a"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
