@@ -38,6 +38,12 @@
             </intent-filter>
         </receiver>
 
+        <service
+            android:name=".HYKS$HYKS_Settings_Runner2"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
         <receiver
             android:name=".ESM_Morning_Questionnaire"
             android:enabled="true"

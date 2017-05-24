@@ -1,5 +1,6 @@
 package com.aware.plugin.hyks;
 
+import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -255,6 +256,18 @@ public class HYKS extends AppCompatActivity {
         }
     }
 
+    public static class HYKS_Settings_Runner2 extends IntentService {
+        public HYKS_Settings_Runner2() {
+            super("HYKS schedule runner2");
+        }
+
+        protected void onHandleIntent(@Nullable Intent intent) {
+            Log.d("HYKS", "settings runner 2: onHandleIntent");
+            setSchedule(getApplicationContext());
+        }
+    }
+
+
     /**
      * This is an idempotent method which processes current schedule data.
      *
@@ -289,14 +302,13 @@ public class HYKS extends AppCompatActivity {
                 schedule_runner = new Scheduler.Schedule("schedule_settings");
                 schedule_runner
                         .setInterval(1)
-                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                        .setActionIntentAction(HYKS.SERVICE_SETTINGS_RUNNER);
+                        .setActionType(Scheduler.ACTION_TYPE_SERVICE)
+                        .setActionClass(context.getPackageName()+"/"+HYKS.HYKS_Settings_Runner2.class.getName());
                 Scheduler.saveSchedule(context, schedule_runner);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
 
 
         // Morning schedule
