@@ -361,11 +361,11 @@ public class HYKS extends AppCompatActivity {
         }
 
 
-
+//        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
 //        try {
 //            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo_fixed");
 //            schedule_random1.setInterval(1).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-//            Scheduler.saveSchedule(this, schedule_random1);
+//            Scheduler.saveSchedule(context, schedule_random1);
 //        } catch (JSONException e) {
 //            e.printStackTrace();
 //        }
