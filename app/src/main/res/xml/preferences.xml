@@ -7,20 +7,20 @@
         android:key="status_plugin_hyks"
         android:defaultValue="false"
         android:persistent="true"
-        android:summary="Activate/deactivate plugin" />
+        android:summary="@string/setting_plugin_status" />
 
     <EditTextPreference
-        android:key="setting_start_hour"
+        android:key="hyks_start_hour"
         android:defaultValue="@integer/default_start_time"
         android:persistent="true"
-        android:summary="Usual wakeup hour"
+        android:summary="@string/setting_start_hour"
         android:inputType="numberDecimal"/>
 
     <EditTextPreference
-        android:key="setting_end_hour"
+        android:key="hyks_end_hour"
         android:defaultValue="@integer/default_end_time"
         android:persistent="true"
-        android:summary="Usual bedtime hour"
+        android:summary="@string/setting_end_hour"
         android:inputType="numberDecimal"/>
 
 </PreferenceScreen>

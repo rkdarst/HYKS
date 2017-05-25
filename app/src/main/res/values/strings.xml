@@ -16,6 +16,9 @@
     <string name="button_set_schedule">Set Schedule</string>
     <string name="button_settings">Settings</string>
     <string name="warning_missing_answer">Muista täyttää kaikki kysymykset!</string>
+    <string name="setting_plugin_status">Activate/deactivate plugin</string>
+    <string name="setting_start_hour">Usual wakeup hour</string>
+    <string name="setting_end_hour">Usual bedtime hour (0-23)</string>
 
     <string name="submit">Lähetä</string>
     <string name="esm_scale_yes">KYLLÄ</string>

@@ -407,13 +407,14 @@ public class HYKS extends AppCompatActivity {
 
 
         // PHQ9 schedule
-        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+        if (Aware.getSetting(context, Settings.MONTHLY_QUESTIONS).equals("false")) {
             context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_biweekly%'", null);
             Log.d("HYKS", "Biweekly schedules: Deleting");
         }
-        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+        if (! Aware.getSetting(context, Settings.MONTHLY_QUESTIONS).equals("false")
                 && ! isScheduleCorrect(context, "schedule_biweekly%", startHour, endHour)) {
             Log.d("HYKS", "Biweekly schedule: Deleting and setting");
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_biweekly%'", null);
             try {
                 Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
                 schedule_biweekly
