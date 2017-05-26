@@ -7,4 +7,9 @@
     <string name="core_secret_id_error">Liittymiseen vaaditaan URL tai 16-numeroinen salainen ID</string>
     <string name="config_usual_wakeup_hour">Tavallinen heräämisaika:</string>
     <string name="config_usual_bedtime_hour">Tavallinen nukkumaanmenoaika:</string>
+    <string name="currently_joined">Kiitos tutkimukseen osallistumisesta.</string>
+    <string name="button_join">Liity</string>
+    <string name="button_set_schedule">Aseta aikataulu</string>
+    <string name="button_settings">Asetukset</string>
+    <string name="button_synchronise">Sykronoi</string>
 </resources>
