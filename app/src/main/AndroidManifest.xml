@@ -104,11 +104,13 @@
         <activity
             android:name=".phq9"
             android:label="@string/title_activity_phq9"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".olo"
             android:label="@string/title_activity_olo"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
