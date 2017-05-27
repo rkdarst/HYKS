@@ -108,7 +108,6 @@ public class HYKS extends AppCompatActivity {
             join_study.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO : URL
                     //String url = "https://api.awareframework.com/index.php/webservice/index/123/123456789";
 
                     EditText edittext_study_url = (EditText) findViewById(R.id.edittext_study_url);
@@ -155,7 +154,6 @@ public class HYKS extends AppCompatActivity {
                     // Clear (local) data after it has been synced.
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_CLEAN_OLD_DATA, 4);
 
-                    // TODO: configure ambient noise
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.STATUS_PLUGIN_AMBIENT_NOISE, true);
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.PLUGIN_AMBIENT_NOISE_NO_RAW, true);
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.FREQUENCY_PLUGIN_AMBIENT_NOISE, 30); // in minutes
@@ -295,7 +293,6 @@ public class HYKS extends AppCompatActivity {
         //Context context = HYKS.appContext;
         //Context context = getApplication().getApplicationContext();
 
-        // TODO: make these hours configurable
         int startHour = context.getResources().getInteger(R.integer.default_start_time);
         int endHour   = context.getResources().getInteger(R.integer.default_end_time);
         String startHourStr = Aware.getSetting(context, Settings.START_HOUR);
