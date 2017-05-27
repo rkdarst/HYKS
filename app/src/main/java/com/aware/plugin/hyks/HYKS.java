@@ -301,7 +301,7 @@ public class HYKS extends AppCompatActivity {
             try {
                 schedule_runner = new Scheduler.Schedule("schedule_settings");
                 schedule_runner
-                        .setInterval(1)
+                        .setInterval(30)
                         .setActionType(Scheduler.ACTION_TYPE_SERVICE)
                         .setActionClass(context.getPackageName()+"/"+HYKS.HYKS_Settings_Runner2.class.getName());
                 Scheduler.saveSchedule(context, schedule_runner);
