@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -42,7 +43,7 @@ public class HYKS extends AppCompatActivity {
 
     private TextView device_id;
     private TextView version_id;
-    private Button join_study, set_settings, sync_data, set_schedule;
+    private Button join_study, set_settings, sync_data, set_schedule, uninstall;
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
 
@@ -186,6 +187,17 @@ public class HYKS extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.core_starting_schedule, Toast.LENGTH_SHORT).show();
                 }
             });
+
+            uninstall = (Button) findViewById(R.id.uninstall);
+            uninstall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Uri packageURI = Uri.parse("package:"+getPackageName());
+                    Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+                    startActivity(uninstallIntent);
+                }
+            });
+
         }
     }
 

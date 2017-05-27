@@ -12,4 +12,5 @@
     <string name="button_set_schedule">Aseta aikataulu</string>
     <string name="button_settings">Asetukset</string>
     <string name="button_synchronise">Sykronoi</string>
+    <string name="uninstall">Poista tämä sovellus</string>
 </resources>
