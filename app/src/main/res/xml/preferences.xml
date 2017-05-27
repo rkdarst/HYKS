@@ -13,14 +13,14 @@
         android:key="hyks_start_hour"
         android:defaultValue="@integer/default_start_time"
         android:persistent="true"
-        android:summary="@string/setting_start_hour"
+        android:summary="@string/config_usual_wakeup_hour"
         android:inputType="numberDecimal"/>
 
     <EditTextPreference
         android:key="hyks_end_hour"
         android:defaultValue="@integer/default_end_time"
         android:persistent="true"
-        android:summary="@string/setting_end_hour"
+        android:summary="@string/config_usual_bedtime_hour"
         android:inputType="numberDecimal"/>
 
 </PreferenceScreen>

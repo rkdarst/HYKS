@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Mobiiliapplikaatiotutkimus</string>
-    <string name="title_activity_hyks">MoMoMood Pilot</string>
+    <string name="title_activity_hyks">\@string/app_name</string>
 
     <string name="secret_id_hint_text">device secret id</string>
     <string name="core_syncing_data">Syncing data...</string>
@@ -9,8 +9,8 @@
     <string name="currently_joined">Thanks for participating in this study.</string>
     <string name="core_secret_id_error">Join must be either URL or 16-digit secret ID</string>
     <string name="core_secret_id_checksum_error">Secret ID was probably typed wrong</string>
-    <string name="config_usual_wakeup_hour">Usual wakeup hour:</string>
-    <string name="config_usual_bedtime_hour">Usual bedtime hour:</string>
+    <string name="config_usual_wakeup_hour">Usual wakeup hour (0-23):</string>
+    <string name="config_usual_bedtime_hour">Usual bedtime hour (0-23):</string>
     <string name="button_join">Join</string>
     <string name="button_synchronise">Synchronise</string>
     <string name="button_set_schedule">Set Schedule</string>
