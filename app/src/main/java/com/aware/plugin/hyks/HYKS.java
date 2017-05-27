@@ -56,11 +56,6 @@ public class HYKS extends AppCompatActivity {
 
         setContentView(R.layout.main_ui);
 
-        //Intent aware = new Intent(this, Aware.class);
-        //startService(aware);
-        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
-        Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
-
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
             if (ContextCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
@@ -79,7 +74,7 @@ public class HYKS extends AppCompatActivity {
             startActivity(permissions);
             finish();
         } else {
-            Applications.isAccessibilityServiceActive(getApplicationContext());
+            checkAppStatus();
 
             device_id = (TextView) findViewById(R.id.device_id);
             device_id.setText("UUID: " + Aware.getSetting(this, Aware_Preferences.DEVICE_ID));
@@ -199,10 +194,19 @@ public class HYKS extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method checks all the standard things to make sure that the app is still running.
+     */
+    public void checkAppStatus() {
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+        Applications.isAccessibilityServiceActive(getApplicationContext());
+        Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
+    }
+
     @Override
     public void onStart() {
         super.onStart();
-        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+        checkAppStatus();
     }
 
     static int jsonMin(JSONArray array) {
@@ -451,7 +455,7 @@ public class HYKS extends AppCompatActivity {
         } else {
             sync_data.setVisibility(View.INVISIBLE);
         }
-        Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
+        //checkAppStatus();
     }
 
     /*
