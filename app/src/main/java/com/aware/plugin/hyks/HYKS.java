@@ -198,8 +198,8 @@ public class HYKS extends AppCompatActivity {
      * This method checks all the standard things to make sure that the app is still running.
      */
     public void checkAppStatus() {
-        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
         Applications.isAccessibilityServiceActive(getApplicationContext());
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
         Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
     }
 
