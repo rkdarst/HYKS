@@ -1,20 +1,23 @@
 <resources>
-    <string name="app_name">MoMoMood Pilot</string>
-    <string name="title_activity_hyks">MoMoMood Pilot</string>
+    <string name="app_name">Mobiiliapplikaatiotutkimus</string>
+    <string name="title_activity_hyks">Mobiiliapplikaatiotutkimus</string>
 
+    <string name="secret_id_hint_text">device secret id</string>
     <string name="core_syncing_data">Syncing data...</string>
     <string name="core_starting_schedule">Starting schedule</string>
     <string name="core_thanks_for_joining">Thanks for joining!</string>
     <string name="currently_joined">Thanks for participating in this study.</string>
     <string name="core_secret_id_error">Join must be either URL or 16-digit secret ID</string>
     <string name="core_secret_id_checksum_error">Secret ID was probably typed wrong</string>
-    <string name="config_usual_wakeup_hour">Usual wakeup hour:</string>
-    <string name="config_usual_bedtime_hour">Usual bedtime hour:</string>
+    <string name="config_usual_wakeup_hour">Usual wakeup hour (0-23):</string>
+    <string name="config_usual_bedtime_hour">Usual bedtime hour (0-23):</string>
     <string name="button_join">Join</string>
     <string name="button_synchronise">Synchronise</string>
     <string name="button_set_schedule">Set Schedule</string>
     <string name="button_settings">Settings</string>
     <string name="warning_missing_answer">Muista täyttää kaikki kysymykset!</string>
+    <string name="setting_plugin_status">Activate/deactivate plugin</string>
+    <string name="uninstall">Uninstall this app</string>
 
     <string name="submit">Lähetä</string>
     <string name="esm_scale_yes">KYLLÄ</string>
@@ -44,13 +47,12 @@
     <string name="evening_2">Kysymyksiin vastaaminen vaikutti mielialaani.</string>
     <string name="evening_3">Ilman laitetta olisin tehnyt eri asioita.</string>
 
-    <string name="title_activity_olo">@string/app_name</string>
-    <string name="olo_instructions">instructions</string>
+    <string name="title_activity_olo">Mobiiliapplikaatiotutkimus</string>
+    <string name="olo_instructions">Juuri nyt tunnen itseni:</string>
     <string name="olo_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="olo_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="olo_lickert_left">Ei</string>
     <string name="olo_lickert_right">Kyllä</string>
-    <string name="olo_1">Juuri nyt tunnen itseni.</string>
     <string name="olo_1_1">Juuri nyt tunnen itseni iloiseksi</string>
     <string name="olo_1_2">Juuri nyt tunnen itseni väsyneeksi</string>
     <string name="olo_1_3">Juuri nyt tunnen itseni tyytyväiseksi</string>
@@ -76,6 +78,8 @@
 
     <string name="olo_3">Mieti tärkeintä tapahtumaa edellisen piippauksen jälkeen</string>
     <string name="olo_3_1">Kuinka miellyttävä tapahtuma oli</string>
+    <string name="olo_3_1_left">:( Epämiellyttävinä</string>
+    <string name="olo_3_1_right">:) Miellyttävinä</string>
     <string name="olo_3_2">Mihin tärkein tapahtuma liittyi</string>
     <string name="olo_3_2_1">työ/opiskelu</string>
     <string name="olo_3_2_2">fyysinen aktiviteetti</string>
@@ -118,7 +122,7 @@
     <string name="olo_4_2_5">yli 6</string>
     <string name="olo_4_3">Montako ravintola-annosta alkoholia olet juonut</string>
     <string name="olo_4_3_1">0</string>
-    <string name="olo_4_3_2" />
+    <string name="olo_4_3_2">1-4</string>
     <string name="olo_4_3_3">3-5</string>
     <string name="olo_4_3_4">yli 5</string>
     <string name="olo_4_4">Oleko syönyt aterian</string>
@@ -131,7 +135,7 @@
     <string name="olo_4_7_1_2">keskiraskas</string>
     <string name="olo_4_7_1_3">raskas</string>
 
-    <string name="title_activity_phq9">@string/app_name</string>
+    <string name="title_activity_phq9">Mobiiliapplikaatiotutkimus</string>
     <string name="phq9_notification_title">Kyselylomake odottaa vastaustasi</string>
     <string name="phq9_notification_text">Avaa lomake vastataksesi kyselyyn</string>
     <string name="phq9_instructions">Kuinka usein seuraavat ongelmat ovat vaivanneet teitä viimeisten 2 viikon aikana?</string>

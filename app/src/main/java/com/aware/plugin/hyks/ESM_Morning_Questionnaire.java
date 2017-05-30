@@ -95,9 +95,9 @@ public class ESM_Morning_Questionnaire extends BroadcastReceiver {
 
             ESM_Radio morning_3 = new ESM_Radio();
             morning_3.addRadio(context.getString(R.string.morning_3_0_15))
-                    .addRadio(context.getString(R.string.morning_3_0_15))
-                    .addRadio(context.getString(R.string.morning_3_0_15))
-                    .addRadio(context.getString(R.string.morning_3_0_15))
+                    .addRadio(context.getString(R.string.morning_3_15_30))
+                    .addRadio(context.getString(R.string.morning_3_30_60))
+                    .addRadio(context.getString(R.string.morning_3_60_plus))
                     .setTitle(context.getResources().getString(R.string.morning_3))
                     .setTrigger("Morning")
                     .setSubmitButton(context.getString(R.string.esm_submit))

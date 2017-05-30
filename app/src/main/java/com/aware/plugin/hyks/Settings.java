@@ -15,8 +15,10 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
 
     //Plugin settings in XML @xml/preferences
     public static final String STATUS_PLUGIN_HYKS = "status_plugin_hyks";
-    public static final String START_HOUR = "setting_start_hour";
-    public static final String END_HOUR = "setting_end_hour";
+    public static final String START_HOUR = "hyks_start_hour";
+    public static final String END_HOUR = "hyks_end_hour";
+    public static final String DAILY_QUESTIONS = "hyks_daily_questions";
+    public static final String MONTHLY_QUESTIONS = "hyks_monthly_questions";
 
     //Plugin settings UI elements
     private static CheckBoxPreference status;

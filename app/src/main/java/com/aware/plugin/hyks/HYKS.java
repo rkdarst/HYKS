@@ -1,12 +1,17 @@
 package com.aware.plugin.hyks;
 
+import android.app.IntentService;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +26,7 @@ import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_TTS;
 import com.aware.utils.Scheduler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -33,20 +39,22 @@ import static java.lang.Math.round;
 
 public class HYKS extends AppCompatActivity {
 
+    static Context appContext;
+
     private TextView device_id;
-    private Button join_study, set_settings, sync_data, set_schedule;
+    private TextView version_id;
+    private Button join_study, set_settings, sync_data, set_schedule, uninstall;
 
     private ArrayList<String> REQUIRED_PERMISSIONS = new ArrayList<>();
+
+    static String SERVICE_SETTINGS_RUNNER = "HYKS_SETTINGS_RUNNER";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appContext = getApplicationContext();
 
         setContentView(R.layout.main_ui);
-
-        //Intent aware = new Intent(this, Aware.class);
-        //startService(aware);
-        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
 
         boolean permissions_ok = true;
         for (String p : REQUIRED_PERMISSIONS) {
@@ -66,10 +74,21 @@ public class HYKS extends AppCompatActivity {
             startActivity(permissions);
             finish();
         } else {
-            Applications.isAccessibilityServiceActive(getApplicationContext());
+            checkAppStatus();
 
             device_id = (TextView) findViewById(R.id.device_id);
             device_id.setText("UUID: " + Aware.getSetting(this, Aware_Preferences.DEVICE_ID));
+
+            String version = "";
+            PackageInfo pInfo;
+            try {
+                pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                version = pInfo.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            version_id = (TextView) findViewById(R.id.version_id);
+            version_id.setText("app version: " + version);
 
             set_settings = (Button) findViewById(R.id.set_settings);
             set_settings.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +103,6 @@ public class HYKS extends AppCompatActivity {
             join_study.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    // TODO : URL
                     //String url = "https://api.awareframework.com/index.php/webservice/index/123/123456789";
 
                     EditText edittext_study_url = (EditText) findViewById(R.id.edittext_study_url);
@@ -109,6 +127,7 @@ public class HYKS extends AppCompatActivity {
                     Aware.joinStudy(getApplicationContext(), url);
 
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_ESM, true);
+                    //Aware.setSetting(getApplicationContext(), Aware_Preferences.WEBSERVICE_WIFI_ONLY, true);
 
                     // Probes
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_BATTERY, true);
@@ -130,7 +149,6 @@ public class HYKS extends AppCompatActivity {
                     // Clear (local) data after it has been synced.
                     Aware.setSetting(getApplicationContext(), Aware_Preferences.FREQUENCY_CLEAN_OLD_DATA, 4);
 
-                    // TODO: configure ambient noise
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.STATUS_PLUGIN_AMBIENT_NOISE, true);
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.PLUGIN_AMBIENT_NOISE_NO_RAW, true);
                     Aware.setSetting(getApplicationContext(), com.aware.plugin.ambient_noise.Settings.FREQUENCY_PLUGIN_AMBIENT_NOISE, 30); // in minutes
@@ -158,100 +176,271 @@ public class HYKS extends AppCompatActivity {
             set_schedule.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    setSchedule();
+                    setSchedule(appContext);
                     Toast.makeText(getApplicationContext(), R.string.core_starting_schedule, Toast.LENGTH_SHORT).show();
                 }
             });
+
+            uninstall = (Button) findViewById(R.id.uninstall);
+            uninstall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Uri packageURI = Uri.parse("package:"+getPackageName());
+                    Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+                    startActivity(uninstallIntent);
+                }
+            });
+
         }
+    }
+
+    /**
+     * This method checks all the standard things to make sure that the app is still running.
+     */
+    public void checkAppStatus() {
+        Applications.isAccessibilityServiceActive(getApplicationContext());
+        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+        Aware.isBatteryOptimizationIgnored(getApplicationContext(), getPackageName());
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        sendBroadcast(new Intent(Aware.ACTION_AWARE_PRIORITY_FOREGROUND));
+        checkAppStatus();
     }
 
-    private void setSchedule() {
+    static int jsonMin(JSONArray array) {
+        int min = 99;
+            for (int i = 0; i < array.length(); i++) {
+                try {
+                    min = Math.min(min, array.getInt(i));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        return min;
+    }
+    static int jsonMax(JSONArray array) {
+        int max = -1;
+        for (int i = 0; i < array.length(); i++) {
+            try {
+                max = Math.max(max, array.getInt(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return max;
+    }
 
-        // TODO: make these hours configurable
-        int startHour = getResources().getInteger(R.integer.default_start_time);
-        int endHour   = getResources().getInteger(R.integer.default_end_time);
-        String startHourStr = Aware.getSetting(getApplicationContext(), Settings.START_HOUR);
-        String endHourStr   = Aware.getSetting(getApplicationContext(), Settings.END_HOUR);
+    /*
+     * Compare a schedule to the expected parameters.  If it is not set up correctly, return false.
+     * This is used to check if a schedule needs recreating.
+     */
+    static boolean isScheduleCorrect(Context context, String schedule_id, Integer startHour, Integer endHour) {
+        try {
+            Scheduler.Schedule schedule = Scheduler.getSchedule(context, schedule_id);
+            if (schedule == null
+                    || (startHour != null && jsonMin(schedule.getHours()) != startHour)
+                    || (endHour   != null && jsonMax(schedule.getHours()) != endHour)
+                    ) {
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public static class HYKS_Settings_Runner extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("HYKS", "schedule runner: received intent");
+            if (!intent.getAction().equals(HYKS.SERVICE_SETTINGS_RUNNER)) {
+                return;
+            }
+            Log.d("HYKS", "schedule runner: running");
+            // The following doesn't work because this is a static context and setSchedule is non-static.
+            //setSchedule();
+            if (HYKS.appContext != null) {
+                setSchedule(HYKS.appContext);
+            } else {
+                Log.e("HYKS", "HYKS_Settings_Runner was called and appContext was null.  Aborting.");
+            }
+        }
+    }
+
+    public static class HYKS_Settings_Runner2 extends IntentService {
+        public HYKS_Settings_Runner2() {
+            super("HYKS schedule runner2");
+        }
+
+        protected void onHandleIntent(@Nullable Intent intent) {
+            Log.d("HYKS", "settings runner 2: onHandleIntent");
+            setSchedule(getApplicationContext());
+        }
+    }
+
+
+    /**
+     * This is an idempotent method which processes current schedule data.
+     *
+     * @param context the app context
+     */
+    private static void setSchedule(Context context) {
+        if (context == null) {
+            Log.e("HYKS", "setSchedule called with null context");
+            return;
+        }
+        Log.d("HYKS", "setSchedule: running");
+        //Context context = getApplicationContext();
+        //Context context = HYKS.appContext;
+        //Context context = getApplication().getApplicationContext();
+
+        int startHour = context.getResources().getInteger(R.integer.default_start_time);
+        int endHour   = context.getResources().getInteger(R.integer.default_end_time);
+        String startHourStr = Aware.getSetting(context, Settings.START_HOUR);
+        String endHourStr   = Aware.getSetting(context, Settings.END_HOUR);
         if (startHourStr.length() > 0)  startHour = Integer.parseInt(startHourStr);
         if (endHourStr.length()   > 0)  endHour   = Integer.parseInt(endHourStr);
+        // Adjust end hour.  If stop time is 20:00, the last full hour is 19, etc.
         endHour = endHour - 1;
 
-        // Morning schedule
-        try{
-            Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
-            schedule_morning
-                    .addHour(startHour)
-                    .addHour(startHour + 2)
-                    .setInterval(60)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_MORNING_TRIGGERED");
 
-            Scheduler.saveSchedule(this, schedule_morning);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        // Background schedule checker
+        Scheduler.Schedule schedule_runner = Scheduler.getSchedule(context, "schedule_settings");
+        if (schedule_runner == null) {
+            Log.d("HYKS", "setting schedule runner");
+            try {
+                schedule_runner = new Scheduler.Schedule("schedule_settings");
+                schedule_runner
+                        .setInterval(30)
+                        .setActionType(Scheduler.ACTION_TYPE_SERVICE)
+                        .setActionClass(context.getPackageName()+"/"+HYKS.HYKS_Settings_Runner2.class.getName());
+                Scheduler.saveSchedule(context, schedule_runner);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
+
+
+        // Morning schedule
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
+            Log.d("HYKS", "Morning schedule: Deleting");
+        }
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_morning%", startHour, startHour+1)) {
+            Log.d("HYKS", "Morning schedule: Deleting and setting");
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_morning%'", null);
+            try {
+                Scheduler.Schedule schedule_morning = new Scheduler.Schedule("schedule_morning");
+                schedule_morning
+                        .random(1, 30)
+                        .addHour(startHour)
+                        .addHour(startHour + 1)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("ESM_MORNING_TRIGGERED");
+                Scheduler.saveSchedule(context, schedule_morning);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
         // Evening schedule
-        try{
-            Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
-            schedule_evening
-                    .addHour(endHour)
-                    .setInterval(60)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_EVENING_TRIGGERED");
-
-            Scheduler.saveSchedule(this, schedule_evening);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_evening%'", null);
+            Log.d("HYKS", "Evening schedule: Deleting");
         }
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_evening%", endHour-1, endHour)) {
+            Log.d("HYKS", "Evening schedule: Deleting and setting");
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_evening%'", null);
+            try {
+                Scheduler.Schedule schedule_evening = new Scheduler.Schedule("schedule_evening");
+                schedule_evening
+                        .random(1, 30)
+                        .addHour(endHour-1)
+                        .addHour(endHour)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("ESM_EVENING_TRIGGERED");
+
+                Scheduler.saveSchedule(context, schedule_evening);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+//        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
+//        try {
+//            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo_fixed");
+//            schedule_random1.setInterval(1).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+//            Scheduler.saveSchedule(context, schedule_random1);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+
 
         // Random schedule
-        // Delete already existing random schedules
-        Context context = getApplicationContext();
-        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
-        // This second one is for backwards compatibility.
-        context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_random%'", null);
-        // Set new schedule
         int olo1_start = startHour + 2;
-        int olo3_end   = endHour - 2;
-        int olo2_start = (int) round( olo1_start + (olo3_end-olo1_start)/3.);
-        int olo3_start = (int) round( olo1_start + 2*(olo3_end-olo1_start)/3.);
-        int olo1_end   = olo2_start - 2;
-        int olo2_end   = olo3_start - 2;
-        try{
-            Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
-            Scheduler.Schedule schedule_random2 = new Scheduler.Schedule("schedule_olo2");
-            Scheduler.Schedule schedule_random3 = new Scheduler.Schedule("schedule_olo3");
-            schedule_random1.random(1, 30).addHour(olo1_start).addHour(olo1_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-            schedule_random2.random(1, 30).addHour(olo2_start).addHour(olo2_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-            schedule_random3.random(1, 30).addHour(olo3_start).addHour(olo3_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
-            Scheduler.saveSchedule(this, schedule_random1);
-            Scheduler.saveSchedule(this, schedule_random2);
-            Scheduler.saveSchedule(this, schedule_random3);
-        } catch (JSONException e) {
-            e.printStackTrace();
+        int olo3_end = endHour - 2;
+        int olo2_start = (int) round(olo1_start + (olo3_end - olo1_start) / 3.);
+        int olo3_start = (int) round(olo1_start + 2 * (olo3_end - olo1_start) / 3.);
+        int olo1_end = olo2_start - 1;
+        int olo2_end = olo3_start - 1;
+        if (Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
+            Log.d("HYKS", "Olo schedules: Deleting");
+        }
+        if (! Aware.getSetting(context, Settings.DAILY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_olo1%", olo1_start, olo1_end)) {
+            Log.d("HYKS", "Olo schedules: Deleting and setting");
+            // Delete already existing random schedules
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_olo%'", null);
+            // Set new schedule
+            try {
+                Scheduler.Schedule schedule_random1 = new Scheduler.Schedule("schedule_olo1");
+                Scheduler.Schedule schedule_random2 = new Scheduler.Schedule("schedule_olo2");
+                Scheduler.Schedule schedule_random3 = new Scheduler.Schedule("schedule_olo3");
+                schedule_random1.random(1, 30).addHour(olo1_start).addHour(olo1_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+                schedule_random2.random(1, 30).addHour(olo2_start).addHour(olo2_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+                schedule_random3.random(1, 30).addHour(olo3_start).addHour(olo3_end).setActionType(Scheduler.ACTION_TYPE_BROADCAST).setActionIntentAction("ESM_RANDOM_TRIGGERED");
+                Scheduler.saveSchedule(context, schedule_random1);
+                Scheduler.saveSchedule(context, schedule_random2);
+                Scheduler.saveSchedule(context, schedule_random3);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
-        // PHQ9 schedule
-        try{
-            Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
-            schedule_biweekly
-                    .setInterval(40320)
-                    .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
-                    .setActionIntentAction("ESM_PHQ_TRIGGERED");
-            for (int hour=startHour ; hour <= endHour ; hour++) {
-                schedule_biweekly.addHour(hour);
-            }
 
-            Scheduler.saveSchedule(this, schedule_biweekly);
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        // PHQ9 schedule
+        if (Aware.getSetting(context, Settings.MONTHLY_QUESTIONS).equals("false")) {
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_biweekly%'", null);
+            Log.d("HYKS", "Biweekly schedules: Deleting");
+        }
+        if (! Aware.getSetting(context, Settings.MONTHLY_QUESTIONS).equals("false")
+                && ! isScheduleCorrect(context, "schedule_biweekly%", startHour, endHour)) {
+            Log.d("HYKS", "Biweekly schedule: Deleting and setting");
+            context.getContentResolver().delete(Scheduler_Provider.Scheduler_Data.CONTENT_URI, Scheduler_Provider.Scheduler_Data.SCHEDULE_ID + " LIKE 'schedule_biweekly%'", null);
+            try {
+                Scheduler.Schedule schedule_biweekly = new Scheduler.Schedule("schedule_biweekly");
+                schedule_biweekly
+                        .setInterval(40320)
+                        .setActionType(Scheduler.ACTION_TYPE_BROADCAST)
+                        .setActionIntentAction("ESM_PHQ_TRIGGERED");
+                for (int hour = startHour; hour <= endHour; hour++) {
+                    schedule_biweekly.addHour(hour);
+                }
+                Scheduler.saveSchedule(context, schedule_biweekly);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -266,6 +455,7 @@ public class HYKS extends AppCompatActivity {
         } else {
             sync_data.setVisibility(View.INVISIBLE);
         }
+        //checkAppStatus();
     }
 
     /*
