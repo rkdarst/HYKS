@@ -44,9 +44,9 @@ public class Plugin extends Aware_Plugin {
         REQUIRED_PERMISSIONS.add(Manifest.permission.READ_SMS);
         REQUIRED_PERMISSIONS.add(Manifest.permission.RECORD_AUDIO);
 
-        DATABASE_TABLES = Provider.DATABASE_TABLES;
-        TABLES_FIELDS = Provider.TABLES_FIELDS;
-        CONTEXT_URIS = new Uri[]{Provider.HYKS_data.CONTENT_URI};
+        //DATABASE_TABLES = Provider.DATABASE_TABLES;
+        //TABLES_FIELDS = Provider.TABLES_FIELDS;
+        //CONTEXT_URIS = new Uri[]{Provider.HYKS_data.CONTENT_URI};
     }
 
     //This function gets called every 5 minutes by AWARE to make sure this plugin is still running.
